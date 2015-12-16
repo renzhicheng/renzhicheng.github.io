@@ -51,15 +51,23 @@
 
 
 
-<meta name="description">
-<meta property="og:type" content="website">
-<meta property="og:title" content="RENZCBLOG">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta name="description" content="自定义两个类，分别是testView和testCALayer，继承UIView和CALayer。
+在testView中重写：
+123456789101112131415+(Class)layerClass&amp;#123;    return [TestCALayer class];&amp;#125;-(void)setFrame:(CGRect)frame&amp;#123;    [super setFrame:">
+<meta property="og:type" content="article">
+<meta property="og:title" content="关于CALayer和UIView的关联">
+<meta property="og:url" content="http://yoursite.com/2015/12/16/关于CALayer和UIView的关联/index.html">
 <meta property="og:site_name" content="RENZCBLOG">
-<meta property="og:description">
+<meta property="og:description" content="自定义两个类，分别是testView和testCALayer，继承UIView和CALayer。
+在testView中重写：
+123456789101112131415+(Class)layerClass&amp;#123;    return [TestCALayer class];&amp;#125;-(void)setFrame:(CGRect)frame&amp;#123;    [super setFrame:">
+<meta property="og:image" content="http://yoursite.com/Applications/MacDown.app/Contents/Picture/1.tiff">
+<meta property="og:updated_time" content="2015-12-16T05:31:52.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="RENZCBLOG">
-<meta name="twitter:description">
+<meta name="twitter:title" content="关于CALayer和UIView的关联">
+<meta name="twitter:description" content="自定义两个类，分别是testView和testCALayer，继承UIView和CALayer。
+在testView中重写：
+123456789101112131415+(Class)layerClass&amp;#123;    return [TestCALayer class];&amp;#125;-(void)setFrame:(CGRect)frame&amp;#123;    [super setFrame:">
 
 
 
@@ -71,7 +79,7 @@
   };
 </script>
 
-  <title> RENZCBLOG </title>
+  <title> 关于CALayer和UIView的关联 | RENZCBLOG </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -92,9 +100,7 @@
 
 
 
-  <div class="container one-column 
-   page-home 
-">
+  <div class="container one-column page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -181,24 +187,9 @@
       <div class="main-inner">
         <div id="content" class="content">
           
-  <section id="posts" class="posts-expand">
 
+  <div id="posts" class="posts-expand">
     
-
-    
-    
-      
-      
-        
-        
-        
-      
-
-      
-    
-
-    
-      
 
   
   
@@ -218,107 +209,7 @@
             
             
               
-                
-                <a class="post-title-link" href="/2015/12/16/线程一次性代码/" itemprop="url">
-                  线程中一次性代码测试
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2015-12-16T12:42:36+08:00" content="2015-12-16">
-              2015-12-16
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp; 分类于
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/iOS学习/" itemprop="url" rel="index">
-                    <span itemprop="name">iOS学习</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <h4 id="u6D4B_u8BD5_u4E00"><a href="#u6D4B_u8BD5_u4E00" class="headerlink" title="测试一"></a>测试一</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)touchesBegan:(NSSet&lt;UITouch *&gt; *)touches withEvent:(UIEvent *)event&#123;</span><br><span class="line">    NSLog(@<span class="string">"===========%@"</span>,[NSThread currentThread]);</span><br><span class="line">    [self test];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)test&#123;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">dispatch_once_t</span> onceToken;</span><br><span class="line">    dispatch_once(&amp;onceToken,^&#123;</span><br><span class="line">        NSLog(@<span class="string">"一次性任务%@"</span>,[NSThread currentThread]);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>多次点击后的结果为：<br/><br>2015-12-05 19:56:31.473 Thread3[7913:568968] ===========<NSThread: 0x7fafcad04d30>{number = 1, name = main}<br>2015-12-05 19:56:31.474 Thread3[7913:568968] 一次性任务<NSThread: 0x7fafcad04d30>{number = 1, name = main}<br>2015-12-05 19:56:31.687 Thread3[7913:568968] ===========<NSThread: 0x7fafcad04d30>{number = 1, name = main}<br>2015-12-05 19:56:31.869 Thread3[7913:568968] ===========<NSThread: 0x7fafcad04d30>{number = 1, name = main}<br>2015-12-05 19:56:36.014 Thread3[7913:568968] ===========<NSThread: 0x7fafcad04d30>{number = 1, name = main}<br>2015-12-05 19:56:36.182 Thread3[7913:568968] ===========<NSThread: 0x7fafcad04d30>{number = 1, name = main}<br>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2015/12/16/线程一次性代码/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/12/16/关于CALayer和UIView的关联/" itemprop="url">
-                  关于CALayer和UIView的关联
-                </a>
+                关于CALayer和UIView的关联
               
             
           </h1>
@@ -366,10 +257,7 @@
       
 
       
-        
-          <span itemprop="articleBody">
-            
-              <p>自定义两个类，分别是testView和testCALayer，继承UIView和CALayer。</p>
+        <span itemprop="articleBody"><p>自定义两个类，分别是testView和testCALayer，继承UIView和CALayer。</p>
 <p>在testView中重写：</p>
 <figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">+(Class)layerClass&#123;</span><br><span class="line">    <span class="keyword">return</span> [Test<span class="built_in">CALayer</span> class];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">-(<span class="keyword">void</span>)setFrame:(<span class="built_in">CGRect</span>)frame&#123;</span><br><span class="line">    [<span class="keyword">super</span> setFrame:frame];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">-(<span class="keyword">void</span>)setBounds:(<span class="built_in">CGRect</span>)bounds&#123;</span><br><span class="line">    [<span class="keyword">super</span> setBounds:bounds];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">-(<span class="keyword">void</span>)setCenter:(<span class="built_in">CGPoint</span>)center&#123;</span><br><span class="line">    [<span class="keyword">super</span> setCenter:center];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>在testCALayer中重写：</p>
@@ -378,10 +266,7 @@
 <p>在所有重写的方法中都打上断点。</p>
 <p><img src="/Applications/MacDown.app/Contents/Picture/1.tiff" width="300px"></p>
 <p>从上到下的顺序可以看出创建过程中，调用了Layer的尺寸和位置，并没有调用view的setBounds和SetCenter方法。因此可以说，再加载图像过程中，UIVery并没有起到作用，而是依靠CALayer的center，position，和bounds。</p>
-
-            
-          </span>
-        
+</span>
       
     </div>
 
@@ -389,20 +274,32 @@
       
 
       
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/12/16/线程一次性代码/" rel="prev" title="线程中一次性代码测试">
+                线程中一次性代码测试 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
 
       
-      
-        <div class="post-eof"></div>
       
     </footer>
   </article>
 
 
-    
 
-  </section>
-
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
         </div>
@@ -411,6 +308,10 @@
 
 
         
+  <div class="comments" id="comments">
+    
+  </div>
+
 
       </div>
 
@@ -431,8 +332,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" src="/images/default_avatar.jpg" alt="“Ren”" itemprop="image"/>
           <p class="site-author-name" itemprop="name">“Ren”</p>
@@ -477,6 +387,23 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator">
+            <i class="fa fa-angle-double-up"></i>
+          </div>
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator">
+            <i class="fa fa-angle-double-down"></i>
+          </div>
+        </section>
       
 
     </div>
@@ -547,6 +474,167 @@
   <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.2" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 1 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    motionMiddleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          displaySidebar();
+        }
+      }
+    };
+  });
+</script>
+
+
 
   <script type="text/javascript" src="/js/bootstrap.js"></script>
 
