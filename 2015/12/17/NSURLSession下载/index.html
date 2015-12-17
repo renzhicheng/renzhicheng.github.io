@@ -1,0 +1,659 @@
+<!doctype html>
+<html class="theme-next   use-motion ">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="NSURLSession下载," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
+
+
+
+
+
+
+<meta name="description" content="NSURLSessionDataTask1234567891011121314- (void)touchesBegan:(NSSet&amp;lt;UITouch *&amp;gt; *)touches withEvent:(UIEvent *)event&amp;#123;    NSLog(@&quot;touch begin&quot;);    //初始化一个网络任务    NSURLSession *session = [NSUR">
+<meta property="og:type" content="article">
+<meta property="og:title" content="NSURLSession下载">
+<meta property="og:url" content="http://yoursite.com/2015/12/17/NSURLSession下载/index.html">
+<meta property="og:site_name" content="RENZCBLOG">
+<meta property="og:description" content="NSURLSessionDataTask1234567891011121314- (void)touchesBegan:(NSSet&amp;lt;UITouch *&amp;gt; *)touches withEvent:(UIEvent *)event&amp;#123;    NSLog(@&quot;touch begin&quot;);    //初始化一个网络任务    NSURLSession *session = [NSUR">
+<meta property="og:updated_time" content="2015-12-17T11:02:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="NSURLSession下载">
+<meta name="twitter:description" content="NSURLSessionDataTask1234567891011121314- (void)touchesBegan:(NSSet&amp;lt;UITouch *&amp;gt; *)touches withEvent:(UIEvent *)event&amp;#123;    NSLog(@&quot;touch begin&quot;);    //初始化一个网络任务    NSURLSession *session = [NSUR">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: 'post',
+    motion: true
+  };
+</script>
+
+  <title> NSURLSession下载 | RENZCBLOG </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?522d83ba5b43c66bcc66c5e6c273682e";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">RENZCBLOG</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content">
+          
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                NSURLSession下载
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2015-12-17T15:45:17+08:00" content="2015-12-17">
+              2015-12-17
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/iOS借鉴和学习/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS借鉴和学习</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><h4 id="NSURLSessionDataTask"><a href="#NSURLSessionDataTask" class="headerlink" title="NSURLSessionDataTask"></a>NSURLSessionDataTask</h4><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)touchesBegan:(<span class="built_in">NSSet</span>&lt;<span class="built_in">UITouch</span> *&gt; *)touches withEvent:(<span class="built_in">UIEvent</span> *)event&#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"touch begin"</span>);</span><br><span class="line">    <span class="comment">//初始化一个网络任务</span></span><br><span class="line">    <span class="built_in">NSURLSession</span> *session = [<span class="built_in">NSURLSession</span> sharedSession];</span><br><span class="line">    <span class="built_in">NSURL</span> *url = [<span class="built_in">NSURL</span> URLWithString:<span class="string">@"http://127.0.0.1/video.zip"</span>];</span><br><span class="line">    <span class="built_in">NSURLRequest</span> *request = [<span class="built_in">NSURLRequest</span> requestWithURL:url];</span><br><span class="line">    <span class="comment">//创建一个普通任务</span></span><br><span class="line">    <span class="built_in">NSURLSessionDataTask</span> *task = [session dataTaskWithRequest:request completionHandler:^(<span class="built_in">NSData</span> * _Nullable data, <span class="built_in">NSURLResponse</span> * _Nullable response, <span class="built_in">NSError</span> * _Nullable error) &#123;</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@"%@"</span>,[<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@"%ld"</span>,data<span class="variable">.length</span>);</span><br><span class="line">        [data writeToFile:<span class="string">@"/Users/apple/Desktop/abc.zip"</span> atomically:<span class="literal">YES</span>];</span><br><span class="line">    &#125;];</span><br><span class="line">    [task resume];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>通过测试在下载大文件的时候，内存没有出现暴涨，文件也可以下载下来，并且是在子线程执行的下载。<br><a id="more"></a></p>
+<h4 id="NSURLSessionDownloadTask"><a href="#NSURLSessionDownloadTask" class="headerlink" title="NSURLSessionDownloadTask"></a>NSURLSessionDownloadTask</h4><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)touchesBegan:(<span class="built_in">NSSet</span>&lt;<span class="built_in">UITouch</span> *&gt; *)touches withEvent:(<span class="built_in">UIEvent</span> *)event&#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"touch begin"</span>);</span><br><span class="line">    <span class="comment">//初始化一个网络任务</span></span><br><span class="line">    <span class="built_in">NSURLSession</span> *session = [<span class="built_in">NSURLSession</span> sharedSession];</span><br><span class="line">    <span class="built_in">NSURL</span> *url = [<span class="built_in">NSURL</span> URLWithString:<span class="string">@"http://127.0.0.1/video.zip"</span>];</span><br><span class="line">    <span class="built_in">NSURLRequest</span> *request = [<span class="built_in">NSURLRequest</span> requestWithURL:url];</span><br><span class="line">    <span class="comment">//创建一个普通任务</span></span><br><span class="line">   <span class="built_in">NSURLSessionDownloadTask</span> *task = [session downloadTaskWithRequest:request completionHandler:^(<span class="built_in">NSURL</span> * _Nullable location, <span class="built_in">NSURLResponse</span> * _Nullable response, <span class="built_in">NSError</span> * _Nullable error) &#123;</span><br><span class="line">       <span class="built_in">NSLog</span>(<span class="string">@"location:%@"</span>,location<span class="variable">.path</span>);</span><br><span class="line">   &#125;];</span><br><span class="line">    [task resume];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>使用上述代码下载，内存占有量相对较高，我测试的基本是400M左右，同时上面有很多问题：<br>1、location代表的是文件下载完成后的位置，这个位置是temp文件夹。<br>2、一旦等到block执行完任务后，下载完成的文件将会自动删除。<br>3、无法监听下载进度。<br>4、实现断点续传很不容易。<br>5、如果中途停止下载，那么下载到一半的文件将不会自动删除。</p>
+<p>解决方法是，一遍下载一遍将文件写入到其它地址。这里我使用了第三方框架SSZipArchive，这样可以直接将其解压出来。<br>在block中添加代码：</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSURLSessionDownloadTask</span> *task = [session downloadTaskWithRequest:request completionHandler:^(<span class="built_in">NSURL</span> * _Nullable location, <span class="built_in">NSURLResponse</span> * _Nullable response, <span class="built_in">NSError</span> * _Nullable error) &#123;</span><br><span class="line">       <span class="built_in">NSLog</span>(<span class="string">@"location:%@"</span>,location<span class="variable">.path</span>);</span><br><span class="line">       [SSZipArchive unzipFileAtPath:location<span class="variable">.path</span> toDestination:<span class="string">@"/Users/apple/Desktop/abc"</span>];</span><br><span class="line">   &#125;];</span><br></pre></td></tr></table></figure>
+<p>经过观察，内存的使用大约30M，效果不错。</p>
+<h4 id="NSURLSessionDownloadDelegate"><a href="#NSURLSessionDownloadDelegate" class="headerlink" title="NSURLSessionDownloadDelegate"></a>NSURLSessionDownloadDelegate</h4><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)touchesBegan:(<span class="built_in">NSSet</span>&lt;<span class="built_in">UITouch</span> *&gt; *)touches withEvent:(<span class="built_in">UIEvent</span> *)event&#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"touch begin"</span>);</span><br><span class="line">    <span class="comment">//使用代理来进行监听，使用代理就不能使用系统提供的实例化方法。</span></span><br><span class="line">    <span class="built_in">NSURLSession</span> *session = [<span class="built_in">NSURLSession</span> sessionWithConfiguration:[<span class="built_in">NSURLSessionConfiguration</span> defaultSessionConfiguration] delegate:<span class="keyword">self</span> delegateQueue:[[<span class="built_in">NSOperationQueue</span> alloc]init]];</span><br><span class="line">    <span class="comment">//实例化一个task的对象方法</span></span><br><span class="line">    <span class="built_in">NSURLSessionDownloadTask</span> *task = [session downloadTaskWithURL:[<span class="built_in">NSURL</span> URLWithString:<span class="string">@"http://127.0.0.1/video.zip"</span>]];</span><br><span class="line">    [task resume];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//网络任务下载完成后调用</span></span><br><span class="line">- (<span class="keyword">void</span>)URLSession:(<span class="built_in">NSURLSession</span> *)session</span><br><span class="line">      downloadTask:(<span class="built_in">NSURLSessionDownloadTask</span> *)downloadTask</span><br><span class="line">didFinishDownloadingToURL:(<span class="built_in">NSURL</span> *)location&#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"%@"</span>,location<span class="variable">.path</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//监听下载的数据量</span></span><br><span class="line">- (<span class="keyword">void</span>)URLSession:(<span class="built_in">NSURLSession</span> *)session</span><br><span class="line">      downloadTask:(<span class="built_in">NSURLSessionDownloadTask</span> *)downloadTask</span><br><span class="line">      didWriteData:(int64_t)bytesWritten</span><br><span class="line"> totalBytesWritten:(int64_t)totalBytesWritten</span><br><span class="line">totalBytesExpectedToWrite:(int64_t)totalBytesExpectedToWrite&#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"当前下载大小%lld  累计下载大小%lld   总大小%lld"</span>,bytesWritten,totalBytesWritten,totalBytesExpectedToWrite);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上述可以实现监听下载。</p>
+<h4 id="NSURLSessionDownloadDelegate_u65AD_u70B9_u7EED_u4F20"><a href="#NSURLSessionDownloadDelegate_u65AD_u70B9_u7EED_u4F20" class="headerlink" title="NSURLSessionDownloadDelegate断点续传"></a>NSURLSessionDownloadDelegate断点续传</h4><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="built_in">UIView</span> *)progressView&#123;</span><br><span class="line">    <span class="keyword">if</span> (!_progressView) &#123;</span><br><span class="line">        _progressView = [[<span class="built_in">UIView</span> alloc]init];</span><br><span class="line">        _progressView<span class="variable">.backgroundColor</span> = [<span class="built_in">UIColor</span> cyanColor];</span><br><span class="line">        <span class="comment">//子线程下载，UI要保证在主线程</span></span><br><span class="line">        <span class="built_in">dispatch_async</span>(dispatch_get_main_queue(), ^&#123;</span><br><span class="line">            [<span class="keyword">self</span><span class="variable">.view</span> addSubview:_progressView];</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span>  _progressView;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">IBAction</span>)didBegin:(<span class="built_in">UIButton</span> *)sender &#123;</span><br><span class="line">    <span class="built_in">NSURLSession</span> *session = [<span class="built_in">NSURLSession</span> sessionWithConfiguration:[<span class="built_in">NSURLSessionConfiguration</span> defaultSessionConfiguration] delegate:<span class="keyword">self</span> delegateQueue:[[<span class="built_in">NSOperationQueue</span> alloc]init]];</span><br><span class="line">    <span class="keyword">self</span><span class="variable">.session</span> = session;</span><br><span class="line">    <span class="built_in">NSURLSessionDownloadTask</span> *task = [session downloadTaskWithURL:[<span class="built_in">NSURL</span> URLWithString:<span class="string">@"http://127.0.0.1/video.zip"</span>]];</span><br><span class="line">    <span class="keyword">self</span><span class="variable">.task</span> = task;</span><br><span class="line">    [task resume];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">IBAction</span>)didStop:(<span class="built_in">UIButton</span> *)sender &#123;</span><br><span class="line">    [<span class="keyword">self</span><span class="variable">.task</span> cancelByProducingResumeData:^(<span class="built_in">NSData</span> * _Nullable resumeData) &#123;</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@"停止了下载任务"</span>);</span><br><span class="line">        <span class="comment">//并不是下载下来的文件</span></span><br><span class="line">        [resumeData writeToFile:<span class="string">@"/Users/apple/Desktop/resumeData"</span> atomically:<span class="literal">YES</span>];</span><br><span class="line">        <span class="keyword">self</span><span class="variable">.resumeData</span> = resumeData;</span><br><span class="line">    &#125;];</span><br><span class="line">    <span class="comment">//这里要释放内存，因为接下来在继续中将会相当于新建task，而这个task等于失去作用，所以要释放。</span></span><br><span class="line">    <span class="keyword">self</span><span class="variable">.task</span> = <span class="literal">nil</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">IBAction</span>)didContinues:(<span class="built_in">UIButton</span> *)sender &#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"继续下载"</span>);</span><br><span class="line">    <span class="keyword">self</span><span class="variable">.task</span> = [<span class="keyword">self</span><span class="variable">.session</span> downloadTaskWithResumeData:<span class="keyword">self</span><span class="variable">.resumeData</span>];</span><br><span class="line">    [<span class="keyword">self</span><span class="variable">.task</span> resume];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//网络任务下载完成后调用</span></span><br><span class="line">- (<span class="keyword">void</span>)URLSession:(<span class="built_in">NSURLSession</span> *)session</span><br><span class="line">      downloadTask:(<span class="built_in">NSURLSessionDownloadTask</span> *)downloadTask</span><br><span class="line">didFinishDownloadingToURL:(<span class="built_in">NSURL</span> *)location&#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"%@"</span>,location<span class="variable">.path</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//监听下载的数据量</span></span><br><span class="line">- (<span class="keyword">void</span>)URLSession:(<span class="built_in">NSURLSession</span> *)session</span><br><span class="line">      downloadTask:(<span class="built_in">NSURLSessionDownloadTask</span> *)downloadTask</span><br><span class="line">      didWriteData:(int64_t)bytesWritten</span><br><span class="line"> totalBytesWritten:(int64_t)totalBytesWritten</span><br><span class="line">totalBytesExpectedToWrite:(int64_t)totalBytesExpectedToWrite&#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"当前下载大小%lld  累计下载大小%lld   总大小%lld"</span>,bytesWritten,totalBytesWritten,totalBytesExpectedToWrite);</span><br><span class="line">    <span class="comment">//这里必须回到主线程，因为在一开始代理方法都是在子线程执行的。</span></span><br><span class="line">    <span class="built_in">dispatch_async</span>(dispatch_get_main_queue(), ^&#123;</span><br><span class="line">        <span class="comment">//必须转float，否则不显示。</span></span><br><span class="line">        <span class="keyword">float</span> progress = (<span class="keyword">float</span>)totalBytesWritten/totalBytesExpectedToWrite;</span><br><span class="line">        <span class="keyword">self</span><span class="variable">.progressView</span><span class="variable">.frame</span> = <span class="built_in">CGRectMake</span>(<span class="number">20</span>, <span class="number">50</span>, <span class="number">335</span>*progress, <span class="number">20</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>创建三个按钮分别是开始、暂停、继续。定义三个全局变量，session，task，resumedata。</p>
+</span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/NSURLSession下载/" rel="tag">#NSURLSession下载</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/12/16/线程一次性代码/" rel="next" title="线程中一次性代码测试">
+                <i class="fa fa-chevron-left"></i> 线程中一次性代码测试
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+        </div>
+
+        
+
+
+        
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+      </div>
+
+      
+        
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="/images/default_avatar.jpg" alt="“Ren”" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">“Ren”</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description"></p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">2</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">1</span>
+              <span class="site-state-item-name">分类</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">2</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator">
+            <i class="fa fa-angle-double-up"></i>
+          </div>
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#NSURLSessionDataTask"><span class="nav-number">1.</span> <span class="nav-text">NSURLSessionDataTask</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#NSURLSessionDownloadTask"><span class="nav-number">2.</span> <span class="nav-text">NSURLSessionDownloadTask</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#NSURLSessionDownloadDelegate"><span class="nav-number">3.</span> <span class="nav-text">NSURLSessionDownloadDelegate</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#NSURLSessionDownloadDelegate_u65AD_u70B9_u7EED_u4F20"><span class="nav-number">4.</span> <span class="nav-text">NSURLSessionDownloadDelegate断点续传</span></a></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator">
+            <i class="fa fa-angle-double-down"></i>
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+      
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2015</span>
+  <span class="with-love">
+    <i class="icon-next-heart fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">“Ren”</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+
+  
+    
+    
+
+  
+
+
+  
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
+
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.2" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 1 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    motionMiddleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          displaySidebar();
+        }
+      }
+    };
+  });
+</script>
+
+
+
+  <script type="text/javascript" src="/js/bootstrap.js"></script>
+
+  
+  
+
+  
+  
+
+</body>
+</html>

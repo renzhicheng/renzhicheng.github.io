@@ -89,6 +89,16 @@
 
 
 
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?522d83ba5b43c66bcc66c5e6c273682e";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
 
 
 
@@ -219,8 +229,8 @@
             
               
                 
-                <a class="post-title-link" href="/2015/12/16/线程一次性代码/" itemprop="url">
-                  线程中一次性代码测试
+                <a class="post-title-link" href="/2015/12/17/NSURLSession下载/" itemprop="url">
+                  NSURLSession下载
                 </a>
               
             
@@ -230,8 +240,8 @@
         <div class="post-meta">
           <span class="post-time">
             发表于
-            <time itemprop="dateCreated" datetime="2015-12-16T12:42:36+08:00" content="2015-12-16">
-              2015-12-16
+            <time itemprop="dateCreated" datetime="2015-12-17T15:45:17+08:00" content="2015-12-17">
+              2015-12-17
             </time>
           </span>
 
@@ -240,8 +250,8 @@
               &nbsp; | &nbsp; 分类于
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/iOS学习/" itemprop="url" rel="index">
-                    <span itemprop="name">iOS学习</span>
+                  <a href="/categories/iOS借鉴和学习/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS借鉴和学习</span>
                   </a>
                 </span>
 
@@ -270,10 +280,10 @@
 
       
         
-          <h4 id="u6D4B_u8BD5_u4E00"><a href="#u6D4B_u8BD5_u4E00" class="headerlink" title="测试一"></a>测试一</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)touchesBegan:(NSSet&lt;UITouch *&gt; *)touches withEvent:(UIEvent *)event&#123;</span><br><span class="line">    NSLog(@<span class="string">"===========%@"</span>,[NSThread currentThread]);</span><br><span class="line">    [self test];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)test&#123;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">dispatch_once_t</span> onceToken;</span><br><span class="line">    dispatch_once(&amp;onceToken,^&#123;</span><br><span class="line">        NSLog(@<span class="string">"一次性任务%@"</span>,[NSThread currentThread]);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>多次点击后的结果为：<br/><br>2015-12-05 19:56:31.473 Thread3[7913:568968] ===========<NSThread: 0x7fafcad04d30>{number = 1, name = main}<br>2015-12-05 19:56:31.474 Thread3[7913:568968] 一次性任务<NSThread: 0x7fafcad04d30>{number = 1, name = main}<br>2015-12-05 19:56:31.687 Thread3[7913:568968] ===========<NSThread: 0x7fafcad04d30>{number = 1, name = main}<br>2015-12-05 19:56:31.869 Thread3[7913:568968] ===========<NSThread: 0x7fafcad04d30>{number = 1, name = main}<br>2015-12-05 19:56:36.014 Thread3[7913:568968] ===========<NSThread: 0x7fafcad04d30>{number = 1, name = main}<br>2015-12-05 19:56:36.182 Thread3[7913:568968] ===========<NSThread: 0x7fafcad04d30>{number = 1, name = main}<br>
+          <h4 id="NSURLSessionDataTask"><a href="#NSURLSessionDataTask" class="headerlink" title="NSURLSessionDataTask"></a>NSURLSessionDataTask</h4><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)touchesBegan:(<span class="built_in">NSSet</span>&lt;<span class="built_in">UITouch</span> *&gt; *)touches withEvent:(<span class="built_in">UIEvent</span> *)event&#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"touch begin"</span>);</span><br><span class="line">    <span class="comment">//初始化一个网络任务</span></span><br><span class="line">    <span class="built_in">NSURLSession</span> *session = [<span class="built_in">NSURLSession</span> sharedSession];</span><br><span class="line">    <span class="built_in">NSURL</span> *url = [<span class="built_in">NSURL</span> URLWithString:<span class="string">@"http://127.0.0.1/video.zip"</span>];</span><br><span class="line">    <span class="built_in">NSURLRequest</span> *request = [<span class="built_in">NSURLRequest</span> requestWithURL:url];</span><br><span class="line">    <span class="comment">//创建一个普通任务</span></span><br><span class="line">    <span class="built_in">NSURLSessionDataTask</span> *task = [session dataTaskWithRequest:request completionHandler:^(<span class="built_in">NSData</span> * _Nullable data, <span class="built_in">NSURLResponse</span> * _Nullable response, <span class="built_in">NSError</span> * _Nullable error) &#123;</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@"%@"</span>,[<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@"%ld"</span>,data<span class="variable">.length</span>);</span><br><span class="line">        [data writeToFile:<span class="string">@"/Users/apple/Desktop/abc.zip"</span> atomically:<span class="literal">YES</span>];</span><br><span class="line">    &#125;];</span><br><span class="line">    [task resume];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>通过测试在下载大文件的时候，内存没有出现暴涨，文件也可以下载下来，并且是在子线程执行的下载。<br>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2015/12/16/线程一次性代码/#more" rel="contents">
+            <a class="btn" href="/2015/12/17/NSURLSession下载/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -316,8 +326,8 @@
             
               
                 
-                <a class="post-title-link" href="/2015/12/16/关于CALayer和UIView的关联/" itemprop="url">
-                  关于CALayer和UIView的关联
+                <a class="post-title-link" href="/2015/12/16/线程一次性代码/" itemprop="url">
+                  线程中一次性代码测试
                 </a>
               
             
@@ -327,7 +337,7 @@
         <div class="post-meta">
           <span class="post-time">
             发表于
-            <time itemprop="dateCreated" datetime="2015-12-16T10:40:06+08:00" content="2015-12-16">
+            <time itemprop="dateCreated" datetime="2015-12-16T12:42:36+08:00" content="2015-12-16">
               2015-12-16
             </time>
           </span>
@@ -337,8 +347,8 @@
               &nbsp; | &nbsp; 分类于
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/iOS学习/" itemprop="url" rel="index">
-                    <span itemprop="name">iOS学习</span>
+                  <a href="/categories/iOS借鉴和学习/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS借鉴和学习</span>
                   </a>
                 </span>
 
@@ -367,20 +377,14 @@
 
       
         
-          <span itemprop="articleBody">
-            
-              <p>自定义两个类，分别是testView和testCALayer，继承UIView和CALayer。</p>
-<p>在testView中重写：</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">+(Class)layerClass&#123;</span><br><span class="line">    <span class="keyword">return</span> [Test<span class="built_in">CALayer</span> class];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">-(<span class="keyword">void</span>)setFrame:(<span class="built_in">CGRect</span>)frame&#123;</span><br><span class="line">    [<span class="keyword">super</span> setFrame:frame];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">-(<span class="keyword">void</span>)setBounds:(<span class="built_in">CGRect</span>)bounds&#123;</span><br><span class="line">    [<span class="keyword">super</span> setBounds:bounds];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">-(<span class="keyword">void</span>)setCenter:(<span class="built_in">CGPoint</span>)center&#123;</span><br><span class="line">    [<span class="keyword">super</span> setCenter:center];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>在testCALayer中重写：</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">-(<span class="keyword">void</span>)setFrame:(<span class="built_in">CGRect</span>)frame&#123;</span><br><span class="line">    [<span class="keyword">super</span> setFrame:frame];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">-(<span class="keyword">void</span>)setBounds:(<span class="built_in">CGRect</span>)bounds&#123;</span><br><span class="line">    [<span class="keyword">super</span> setBounds:bounds];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">-(<span class="keyword">void</span>)setPosition:(<span class="built_in">CGPoint</span>)position&#123;</span><br><span class="line">    [<span class="keyword">super</span> setPosition:position];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>在viewController中写<code>TestView *view = [[TestView alloc]initWithFrame:CGRectMake(0, 0, 100, 100)];</code></p>
-<p>在所有重写的方法中都打上断点。</p>
-<p><img src="/Applications/MacDown.app/Contents/Picture/1.tiff" width="300px"></p>
-<p>从上到下的顺序可以看出创建过程中，调用了Layer的尺寸和位置，并没有调用view的setBounds和SetCenter方法。因此可以说，再加载图像过程中，UIVery并没有起到作用，而是依靠CALayer的center，position，和bounds。</p>
-
-            
-          </span>
+          <p>测试主要是看一次性代码的执行效果，另一个是看主线程和子线程的添加方式。</p>
+<h5 id="u6D4B_u8BD5_u4E00"><a href="#u6D4B_u8BD5_u4E00" class="headerlink" title="测试一"></a>测试一</h5><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)touchesBegan:(NSSet&lt;UITouch *&gt; *)touches withEvent:(UIEvent *)event&#123;</span><br><span class="line">    NSLog(@<span class="string">"===========%@"</span>,[NSThread currentThread]);</span><br><span class="line">    [self test];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)test&#123;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">dispatch_once_t</span> onceToken;</span><br><span class="line">    dispatch_once(&amp;onceToken,^&#123;</span><br><span class="line">        NSLog(@<span class="string">"一次性任务%@"</span>,[NSThread currentThread]);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>多次点击后的结果为：</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/12/16/线程一次性代码/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -455,7 +459,7 @@
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">1</span>
+              <span class="site-state-item-count">2</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>
