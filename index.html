@@ -280,16 +280,12 @@
 
       
         
-          <span itemprop="articleBody">
-            
-              <p>之前使用tableView时，希望能自定义每一个cell到不同的样式和效果，于是尝试了以下代码，但目前需要使用到xib并关联相关的UITableViewCell，如果是纯代码暂时还没有找到解决的方法。以下是相关代码：</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="built_in">UITableViewCell</span> *)tableView:(<span class="built_in">UITableView</span> *)tableView cellForRowAtIndexPath:(<span class="built_in">NSIndexPath</span> *)indexPath&#123;</span><br><span class="line">    <span class="keyword">static</span> <span class="built_in">NSString</span> *ID = <span class="string">@"Weather"</span>;</span><br><span class="line">    <span class="built_in">UITableViewCell</span> *cell = [tableView dequeueReusableCellWithIdentifier:ID];</span><br><span class="line">    <span class="keyword">if</span> (indexPath<span class="variable">.row</span> == <span class="number">0</span>) &#123;</span><br><span class="line">        cell = [[[<span class="built_in">NSBundle</span> mainBundle]loadNibNamed:<span class="string">@"Number_ZeroCell"</span> owner:<span class="literal">nil</span> options:<span class="literal">nil</span>] lastObject];</span><br><span class="line">        <span class="comment">//第0个cell的行高</span></span><br><span class="line">        tableView<span class="variable">.rowHeight</span> = <span class="number">300</span>;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        cell = [[<span class="built_in">UITableViewCell</span> alloc]init];</span><br><span class="line">        tableView<span class="variable">.rowHeight</span> = <span class="number">70</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> cell;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>主要是使用了if进行判断，并把原本cell不存在时的alloc，init方法换成了loadNibName方法，调用xib。</p>
-<p>这里需要新建一个xib并起名为<code>@“Number_ZeroCell”</code>，同时新建一个继承UITableViewCell的类并关联，然后在- (void)awakeFromNib {}中自定义代码布局就可以了，xib可以一直为空，但是不能删除，之后会想办法解决如何使用纯代码布局。</p>
-<p>本人目前只能想到这样的解决方法，会继续学习的，由于博客评论还没解决，暂时无法及时交流向跟多厉害的高手学习。</p>
-
-            
-          </span>
+          <p>之前使用tableView时，希望能自定义每一个cell到不同的样式和效果，于是尝试了以下代码，但目前需要使用到xib并关联相关的UITableViewCell，如果是纯代码暂时还没有找到解决的方法。以下是相关代码：</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/12/18/自定义tableView每一个cell/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
