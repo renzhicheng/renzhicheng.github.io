@@ -35,7 +35,7 @@
 <link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="tableViewCell自定义," />
+  <meta name="keywords" content="Swift闭包," />
 
 
 
@@ -51,19 +51,46 @@
 
 
 
-<meta name="description" content="之前使用tableView时，希望能自定义每一个cell到不同的样式和效果，于是尝试了以下代码，但目前需要使用到xib并关联相关的UITableViewCell，如果是纯代码暂时还没有找到解决的方法。以下是相关代码：
-12345678910111213- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexP">
+<meta name="description" content="关于闭包的定义：
+闭包是功能性包自包含模块，可以再代码中传递和使用。类似C和OC中的block，闭包可以捕获和存储其所在上下文中任意常量和变量的引用。
+
+闭包有三种形式：
+
+全局函数是一个有名字但不会捕获任何值的闭包。
+嵌套函数是一个有名字并可以捕获到其封闭函数域内的值的闭包。
+闭包表达式是一个利用轻量级语法所写的，可以捕获其上下文中变量或常量值的匿名闭包。
+
+
+主要用于异步操作完成后代码的回调，">
 <meta property="og:type" content="article">
-<meta property="og:title" content="自定义tableView每一个cell">
-<meta property="og:url" content="http://yoursite.com/2015/12/18/自定义tableView每一个cell/index.html">
+<meta property="og:title" content="swift闭包初涉">
+<meta property="og:url" content="http://yoursite.com/2015/12/24/swift闭包/index.html">
 <meta property="og:site_name" content="一只橙子">
-<meta property="og:description" content="之前使用tableView时，希望能自定义每一个cell到不同的样式和效果，于是尝试了以下代码，但目前需要使用到xib并关联相关的UITableViewCell，如果是纯代码暂时还没有找到解决的方法。以下是相关代码：
-12345678910111213- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexP">
-<meta property="og:updated_time" content="2015-12-24T07:13:22.000Z">
+<meta property="og:description" content="关于闭包的定义：
+闭包是功能性包自包含模块，可以再代码中传递和使用。类似C和OC中的block，闭包可以捕获和存储其所在上下文中任意常量和变量的引用。
+
+闭包有三种形式：
+
+全局函数是一个有名字但不会捕获任何值的闭包。
+嵌套函数是一个有名字并可以捕获到其封闭函数域内的值的闭包。
+闭包表达式是一个利用轻量级语法所写的，可以捕获其上下文中变量或常量值的匿名闭包。
+
+
+主要用于异步操作完成后代码的回调，">
+<meta property="og:updated_time" content="2015-12-24T07:12:24.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="自定义tableView每一个cell">
-<meta name="twitter:description" content="之前使用tableView时，希望能自定义每一个cell到不同的样式和效果，于是尝试了以下代码，但目前需要使用到xib并关联相关的UITableViewCell，如果是纯代码暂时还没有找到解决的方法。以下是相关代码：
-12345678910111213- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexP">
+<meta name="twitter:title" content="swift闭包初涉">
+<meta name="twitter:description" content="关于闭包的定义：
+闭包是功能性包自包含模块，可以再代码中传递和使用。类似C和OC中的block，闭包可以捕获和存储其所在上下文中任意常量和变量的引用。
+
+闭包有三种形式：
+
+全局函数是一个有名字但不会捕获任何值的闭包。
+嵌套函数是一个有名字并可以捕获到其封闭函数域内的值的闭包。
+闭包表达式是一个利用轻量级语法所写的，可以捕获其上下文中变量或常量值的匿名闭包。
+
+
+主要用于异步操作完成后代码的回调，">
 
 
 
@@ -75,7 +102,7 @@
   };
 </script>
 
-  <title> 自定义tableView每一个cell | 一只橙子 </title>
+  <title> swift闭包初涉 | 一只橙子 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -215,7 +242,7 @@
             
             
               
-                自定义tableView每一个cell
+                swift闭包初涉
               
             
           </h1>
@@ -224,8 +251,8 @@
         <div class="post-meta">
           <span class="post-time">
             发表于
-            <time itemprop="dateCreated" datetime="2015-12-18T22:36:55+08:00" content="2015-12-18">
-              2015-12-18
+            <time itemprop="dateCreated" datetime="2015-12-24T15:12:24+08:00" content="2015-12-24">
+              2015-12-24
             </time>
           </span>
 
@@ -234,8 +261,8 @@
               &nbsp; | &nbsp; 分类于
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/iOS探究之路/" itemprop="url" rel="index">
-                    <span itemprop="name">iOS探究之路</span>
+                  <a href="/categories/iOS借鉴和学习/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS借鉴和学习</span>
                   </a>
                 </span>
 
@@ -263,10 +290,29 @@
       
 
       
-        <span itemprop="articleBody"><p>之前使用tableView时，希望能自定义每一个cell到不同的样式和效果，于是尝试了以下代码，但目前需要使用到xib并关联相关的UITableViewCell，如果是纯代码暂时还没有找到解决的方法。以下是相关代码：</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="built_in">UITableViewCell</span> *)tableView:(<span class="built_in">UITableView</span> *)tableView cellForRowAtIndexPath:(<span class="built_in">NSIndexPath</span> *)indexPath&#123;</span><br><span class="line">    <span class="keyword">static</span> <span class="built_in">NSString</span> *ID = <span class="string">@"Weather"</span>;</span><br><span class="line">    <span class="built_in">UITableViewCell</span> *cell = [tableView dequeueReusableCellWithIdentifier:ID];</span><br><span class="line">    <span class="keyword">if</span> (indexPath<span class="variable">.row</span> == <span class="number">0</span>) &#123;</span><br><span class="line">        cell = [[[<span class="built_in">NSBundle</span> mainBundle]loadNibNamed:<span class="string">@"Number_ZeroCell"</span> owner:<span class="literal">nil</span> options:<span class="literal">nil</span>] lastObject];</span><br><span class="line">        <span class="comment">//第0个cell的行高</span></span><br><span class="line">        tableView<span class="variable">.rowHeight</span> = <span class="number">300</span>;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        cell = [[<span class="built_in">UITableViewCell</span> alloc]init];</span><br><span class="line">        tableView<span class="variable">.rowHeight</span> = <span class="number">70</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> cell;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>主要是使用了if进行判断，并把原本cell不存在时的alloc，init方法换成了loadNibName方法，调用xib。</p>
-<p>这里需要新建一个xib并起名为<code>@“Number_ZeroCell”</code>，同时新建一个继承UITableViewCell的类并关联，然后在- (void)awakeFromNib {}中自定义代码布局就可以了，xib可以一直为空，但是不能删除，之后会想办法解决如何使用纯代码布局。</p>
+        <span itemprop="articleBody"><p>关于闭包的定义：</p>
+<p>闭包是功能性包自包含模块，可以再代码中传递和使用。类似C和OC中的block，闭包可以捕获和存储其所在上下文中任意常量和变量的引用。</p>
+<blockquote>
+<p>闭包有三种形式：</p>
+<ol>
+<li>全局函数是一个有名字但不会捕获任何值的闭包。</li>
+<li>嵌套函数是一个有名字并可以捕获到其封闭函数域内的值的闭包。</li>
+<li>闭包表达式是一个利用轻量级语法所写的，可以捕获其上下文中变量或常量值的匿名闭包。</li>
+</ol>
+</blockquote>
+<p>主要用于异步操作完成后代码的回调，网络访问结果一参数形式传递给调用方。在使用中，闭包会预先定义好一个代码块。</p>
+<p>代码测试将预先定义好的闭包及函数都放入test函数进行调用。</p>
+<a id="more"></a>
+<p>方便闭包理解的写法：</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">class ViewController: <span class="built_in">UIViewController</span> &#123;</span><br><span class="line">    override func viewDidLoad() &#123;</span><br><span class="line">        <span class="keyword">super</span><span class="variable">.viewDidLoad</span>()</span><br><span class="line">        test1A()</span><br><span class="line">        test1B()</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//无参数无返回值函数</span></span><br><span class="line">    func test1A()&#123;</span><br><span class="line">        func funcTest()&#123;</span><br><span class="line">            print(<span class="string">"print func"</span>)</span><br><span class="line">        &#125;</span><br><span class="line">        funcTest()</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//无参数无返回值闭包</span></span><br><span class="line">    func test1B()&#123;</span><br><span class="line">        let closure = &#123;</span><br><span class="line">            print(<span class="string">"print closure"</span>)</span><br><span class="line">        &#125;</span><br><span class="line">        closure()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>有参数无返回值：</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">override func viewDidLoad() &#123;</span><br><span class="line">        <span class="keyword">super</span><span class="variable">.viewDidLoad</span>()</span><br><span class="line">        test2A()</span><br><span class="line">        test2B()</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//有参数无返回值函数</span></span><br><span class="line">    func test2A()&#123;</span><br><span class="line">        func funcTest(num1 a : Int, num2 b : Int)&#123;</span><br><span class="line">            let result = a + b</span><br><span class="line">            print(<span class="string">"func:\(result)"</span>)</span><br><span class="line">        &#125;</span><br><span class="line">        funcTest(num1: <span class="number">20</span>, num2: <span class="number">20</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//有参数无返回值闭包</span></span><br><span class="line">    func test2B()&#123;</span><br><span class="line">        let closure = &#123;</span><br><span class="line">            (num1 a : Int, num2 b : Int) <span class="keyword">in</span> <span class="comment">//in 的作用是区分闭包的代码及参数</span></span><br><span class="line">            let result = a + b</span><br><span class="line">            print(<span class="string">"closure:\(result)"</span>)</span><br><span class="line">        &#125;</span><br><span class="line">        closure(num1: <span class="number">20</span>, num2: <span class="number">20</span>)</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>有参数有返回值：</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">override func viewDidLoad() &#123;</span><br><span class="line">       <span class="keyword">super</span><span class="variable">.viewDidLoad</span>()</span><br><span class="line">       test3A()</span><br><span class="line">       test3B()</span><br><span class="line">   &#125;</span><br><span class="line">   </span><br><span class="line">   <span class="comment">//有参数有返回值函数</span></span><br><span class="line">   func test3A()&#123;</span><br><span class="line">       func funcTest(num1 a : Int, num2 b : Int) -&gt; Int&#123;</span><br><span class="line">           <span class="keyword">return</span> a+b</span><br><span class="line">       &#125;</span><br><span class="line">       let result = funcTest(num1: <span class="number">20</span>, num2: <span class="number">20</span>)</span><br><span class="line">       print(<span class="string">"func:\(result)"</span>)</span><br><span class="line">   &#125;</span><br><span class="line">   </span><br><span class="line">   <span class="comment">//有参数有返回值闭包</span></span><br><span class="line">   func test3B()&#123;</span><br><span class="line">       let closure = &#123;</span><br><span class="line">           (num1 a : Int, num2 b : Int) -&gt; Int <span class="keyword">in</span></span><br><span class="line">           <span class="keyword">return</span> a + b</span><br><span class="line">       &#125;</span><br><span class="line">       let result = closure(num1: <span class="number">20</span>, num2: <span class="number">20</span>)</span><br><span class="line">       print(<span class="string">"closure:\(result)"</span>)</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<p>上面的写法主要是帮助理解闭包，以及block的原理。</p>
+<p>开始尝试将闭包作为函数参数来回调（基于C语言的函数指针）。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">override func viewDidLoad() &#123;</span><br><span class="line">        <span class="keyword">super</span><span class="variable">.viewDidLoad</span>()</span><br><span class="line">        let closure = &#123;</span><br><span class="line">            <span class="comment">//让一个闭包与众不同的是里面不同的参数设置，也是靠这个定位一个闭包</span></span><br><span class="line">            (response : String) -&gt; () <span class="keyword">in</span></span><br><span class="line">            print(<span class="string">"已经——&gt;\(response)"</span>)</span><br><span class="line">        &#125;</span><br><span class="line">        dataLoad(closure)     </span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//这里面的response : String就相当于将闭包的申明调用了过来。这样直接在函数中可以直接实现即可。</span></span><br><span class="line">    func dataLoad(callBack : (response : String) -&gt; ())&#123;</span><br><span class="line">        <span class="comment">//来个异步加载</span></span><br><span class="line">        <span class="built_in">dispatch_async</span>(dispatch_get_global_queue(<span class="number">0</span>, <span class="number">0</span>)) &#123; () -&gt; Void <span class="keyword">in</span></span><br><span class="line">            <span class="comment">//假设response获得了数据</span></span><br><span class="line">            let endOfResponse = <span class="string">"获得数据"</span></span><br><span class="line">            <span class="comment">//将数据返回给主线程</span></span><br><span class="line">            <span class="built_in">dispatch_async</span>(dispatch_get_main_queue(), &#123; () -&gt; Void <span class="keyword">in</span></span><br><span class="line">               <span class="comment">//给dataloade函数参数返回值，实现closure闭包</span></span><br><span class="line">                callBack(response: endOfResponse)</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>我个人的理解，这段函数中，参数其实就是闭包的声明，函数体中再将闭包实现。这样这段函数中的闭包相当于完成声明及实现，因此，在调用闭包就能实现闭包中本一定义好的代码块了。</p>
 </span>
       
     </div>
@@ -275,7 +321,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/tableViewCell自定义/" rel="tag">#tableViewCell自定义</a>
+            <a href="/tags/Swift闭包/" rel="tag">#Swift闭包</a>
           
         </div>
       
@@ -284,17 +330,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/12/17/NSURLSession下载/" rel="next" title="NSURLSession下载">
-                <i class="fa fa-chevron-left"></i> NSURLSession下载
+              <a href="/2015/12/18/自定义tableView每一个cell/" rel="next" title="自定义tableView每一个cell">
+                <i class="fa fa-chevron-left"></i> 自定义tableView每一个cell
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2015/12/24/swift闭包/" rel="prev" title="swift闭包初涉">
-                swift闭包初涉 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
