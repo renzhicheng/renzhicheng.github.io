@@ -35,7 +35,7 @@
 <link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="swift重载," />
 
 
 
@@ -51,15 +51,25 @@
 
 
 
-<meta name="description">
-<meta property="og:type" content="website">
-<meta property="og:title" content="一只橙子">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta name="description" content="重载，简单说，就是函数或者方法有同样的名称，但是参数列表不同的情形。重载的方法只属于子类，且函数名必须相同，返回值可以相同，也可以不同，但是特征标必须不同。
+1、父类新建一个父类Person.swift1、添加两个属性
+1234class Person: NSObject &amp;#123;    var name: String    var age: Int&amp;#125;
+提示错误 Class &amp;#3">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Swift重载">
+<meta property="og:url" content="http://yoursite.com/2015/12/26/Swift重载/index.html">
 <meta property="og:site_name" content="一只橙子">
-<meta property="og:description">
+<meta property="og:description" content="重载，简单说，就是函数或者方法有同样的名称，但是参数列表不同的情形。重载的方法只属于子类，且函数名必须相同，返回值可以相同，也可以不同，但是特征标必须不同。
+1、父类新建一个父类Person.swift1、添加两个属性
+1234class Person: NSObject &amp;#123;    var name: String    var age: Int&amp;#125;
+提示错误 Class &amp;#3">
+<meta property="og:updated_time" content="2015-12-26T12:06:04.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="一只橙子">
-<meta name="twitter:description">
+<meta name="twitter:title" content="Swift重载">
+<meta name="twitter:description" content="重载，简单说，就是函数或者方法有同样的名称，但是参数列表不同的情形。重载的方法只属于子类，且函数名必须相同，返回值可以相同，也可以不同，但是特征标必须不同。
+1、父类新建一个父类Person.swift1、添加两个属性
+1234class Person: NSObject &amp;#123;    var name: String    var age: Int&amp;#125;
+提示错误 Class &amp;#3">
 
 
 
@@ -71,7 +81,7 @@
   };
 </script>
 
-  <title> 一只橙子 </title>
+  <title> Swift重载 | 一只橙子 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -102,9 +112,7 @@
 
 
 
-  <div class="container one-column 
-   page-home 
-">
+  <div class="container one-column page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -191,15 +199,9 @@
       <div class="main-inner">
         <div id="content" class="content">
           
-  <section id="posts" class="posts-expand">
 
+  <div id="posts" class="posts-expand">
     
-
-    
-    
-
-    
-      
 
   
   
@@ -219,10 +221,7 @@
             
             
               
-                
-                <a class="post-title-link" href="/2015/12/26/Swift重载/" itemprop="url">
-                  Swift重载
-                </a>
+                Swift重载
               
             
           </h1>
@@ -255,10 +254,7 @@
       
 
       
-        
-          <span itemprop="articleBody">
-            
-              <p>重载，简单说，就是函数或者方法有同样的名称，但是参数列表不同的情形。重载的方法只属于子类，且函数名必须相同，返回值可以相同，也可以不同，但是特征标必须不同。</p>
+        <span itemprop="articleBody"><p>重载，简单说，就是函数或者方法有同样的名称，但是参数列表不同的情形。重载的方法只属于子类，且函数名必须相同，返回值可以相同，也可以不同，但是特征标必须不同。</p>
 <h4 id="1_u3001_u7236_u7C7B"><a href="#1_u3001_u7236_u7C7B" class="headerlink" title="1、父类"></a>1、父类</h4><p>新建一个父类Person.swift<br>1、添加两个属性</p>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span>: <span class="title">NSObject</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> name: <span class="type">String</span></span><br><span class="line">    <span class="keyword">var</span> age: <span class="type">Int</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>提示错误 <code>Class &#39;Person&#39; has no initializers</code><br>原因：定义构造器（initializers）实现这个实例化的过程是，swift要确保所有的属性的设置都是合理的值，存储属性不能是不确定的状体，所以应该给属性设置一个初始值。就像在OC中int型的属性没有赋值，输出的时候是0一样。</p>
@@ -290,432 +286,46 @@
 <li>? 可以代替属性设置初始值，同时不设置初始值的话输出结果都是nil。</li>
 <li>这样做的好处是，属性在需要的时候才分配空间。</li>
 </ul>
-
-            
-          </span>
-        
+</span>
       
     </div>
 
     <footer class="post-footer">
       
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/12/24/swift闭包/" itemprop="url">
-                  swift闭包初涉
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2015-12-24T15:12:24+08:00" content="2015-12-24">
-              2015-12-24
-            </time>
-          </span>
-
+        <div class="post-tags">
           
-            <span class="post-category" >
-              &nbsp; | &nbsp; 分类于
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/iOS凿壁偷光/" itemprop="url" rel="index">
-                    <span itemprop="name">iOS凿壁偷光</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
+            <a href="/tags/swift重载/" rel="tag">#swift重载</a>
           
-
-          
-            
-          
-
-          
-
         </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
       
 
       
-        
-          <p>关于闭包的定义：</p>
-<p>闭包是功能性包自包含模块，可以再代码中传递和使用。类似C和OC中的block，闭包可以捕获和存储其所在上下文中任意常量和变量的引用。</p>
-<blockquote>
-<p>闭包有三种形式：</p>
-<ol>
-<li>全局函数是一个有名字但不会捕获任何值的闭包。</li>
-<li>嵌套函数是一个有名字并可以捕获到其封闭函数域内的值的闭包。</li>
-<li>闭包表达式是一个利用轻量级语法所写的，可以捕获其上下文中变量或常量值的匿名闭包。</li>
-</ol>
-</blockquote>
-<p>主要用于异步操作完成后代码的回调，网络访问结果一参数形式传递给调用方。在使用中，闭包会预先定义好一个代码块。</p>
-<p>代码测试将预先定义好的闭包及函数都放入test函数进行调用。</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2015/12/24/swift闭包/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/12/24/swift闭包/" rel="next" title="swift闭包初涉">
+                <i class="fa fa-chevron-left"></i> swift闭包初涉
+              </a>
+            
           </div>
-        
-      
-    </div>
 
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
+          <div class="post-nav-prev post-nav-item">
             
-            
-              
-                
-                <a class="post-title-link" href="/2015/12/18/自定义tableView每一个cell/" itemprop="url">
-                  自定义tableView每一个cell
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2015-12-18T22:36:55+08:00" content="2015-12-18">
-              2015-12-18
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp; 分类于
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/iOS探究之路/" itemprop="url" rel="index">
-                    <span itemprop="name">iOS探究之路</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody">
-            
-              <p>之前使用tableView时，希望能自定义每一个cell到不同的样式和效果，于是尝试了以下代码，但目前需要使用到xib并关联相关的UITableViewCell，如果是纯代码暂时还没有找到解决的方法。以下是相关代码：</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="built_in">UITableViewCell</span> *)tableView:(<span class="built_in">UITableView</span> *)tableView cellForRowAtIndexPath:(<span class="built_in">NSIndexPath</span> *)indexPath&#123;</span><br><span class="line">    <span class="keyword">static</span> <span class="built_in">NSString</span> *ID = <span class="string">@"Weather"</span>;</span><br><span class="line">    <span class="built_in">UITableViewCell</span> *cell = [tableView dequeueReusableCellWithIdentifier:ID];</span><br><span class="line">    <span class="keyword">if</span> (indexPath<span class="variable">.row</span> == <span class="number">0</span>) &#123;</span><br><span class="line">        cell = [[[<span class="built_in">NSBundle</span> mainBundle]loadNibNamed:<span class="string">@"Number_ZeroCell"</span> owner:<span class="literal">nil</span> options:<span class="literal">nil</span>] lastObject];</span><br><span class="line">        <span class="comment">//第0个cell的行高</span></span><br><span class="line">        tableView<span class="variable">.rowHeight</span> = <span class="number">300</span>;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        cell = [[<span class="built_in">UITableViewCell</span> alloc]init];</span><br><span class="line">        tableView<span class="variable">.rowHeight</span> = <span class="number">70</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> cell;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>主要是使用了if进行判断，并把原本cell不存在时的alloc，init方法换成了loadNibName方法，调用xib。</p>
-<p>这里需要新建一个xib并起名为<code>@“Number_ZeroCell”</code>，同时新建一个继承UITableViewCell的类并关联，然后在- (void)awakeFromNib {}中自定义代码布局就可以了，xib可以一直为空，但是不能删除，之后会想办法解决如何使用纯代码布局。</p>
-
-            
-          </span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/12/17/NSURLSession下载/" itemprop="url">
-                  NSURLSession下载
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2015-12-17T15:45:17+08:00" content="2015-12-17">
-              2015-12-17
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp; 分类于
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/iOS凿壁偷光/" itemprop="url" rel="index">
-                    <span itemprop="name">iOS凿壁偷光</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <h4 id="NSURLSessionDataTask"><a href="#NSURLSessionDataTask" class="headerlink" title="NSURLSessionDataTask"></a>NSURLSessionDataTask</h4><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)touchesBegan:(<span class="built_in">NSSet</span>&lt;<span class="built_in">UITouch</span> *&gt; *)touches withEvent:(<span class="built_in">UIEvent</span> *)event&#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"touch begin"</span>);</span><br><span class="line">    <span class="comment">//初始化一个网络任务</span></span><br><span class="line">    <span class="built_in">NSURLSession</span> *session = [<span class="built_in">NSURLSession</span> sharedSession];</span><br><span class="line">    <span class="built_in">NSURL</span> *url = [<span class="built_in">NSURL</span> URLWithString:<span class="string">@"http://127.0.0.1/video.zip"</span>];</span><br><span class="line">    <span class="built_in">NSURLRequest</span> *request = [<span class="built_in">NSURLRequest</span> requestWithURL:url];</span><br><span class="line">    <span class="comment">//创建一个普通任务</span></span><br><span class="line">    <span class="built_in">NSURLSessionDataTask</span> *task = [session dataTaskWithRequest:request completionHandler:^(<span class="built_in">NSData</span> * _Nullable data, <span class="built_in">NSURLResponse</span> * _Nullable response, <span class="built_in">NSError</span> * _Nullable error) &#123;</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@"%@"</span>,[<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@"%ld"</span>,data<span class="variable">.length</span>);</span><br><span class="line">        [data writeToFile:<span class="string">@"/Users/apple/Desktop/abc.zip"</span> atomically:<span class="literal">YES</span>];</span><br><span class="line">    &#125;];</span><br><span class="line">    [task resume];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>通过测试在下载大文件的时候，内存没有出现暴涨，文件也可以下载下来，并且是在子线程执行的下载。<br>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2015/12/17/NSURLSession下载/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
           </div>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/12/16/线程一次性代码/" itemprop="url">
-                  线程中一次性代码测试
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2015-12-16T12:42:36+08:00" content="2015-12-16">
-              2015-12-16
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp; 分类于
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/iOS凿壁偷光/" itemprop="url" rel="index">
-                    <span itemprop="name">iOS凿壁偷光</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
         </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
       
 
       
-        
-          <p>测试主要是看一次性代码的执行效果，另一个是看主线程和子线程的添加方式。</p>
-<h5 id="u6D4B_u8BD5_u4E00"><a href="#u6D4B_u8BD5_u4E00" class="headerlink" title="测试一"></a>测试一</h5><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)touchesBegan:(<span class="built_in">NSSet</span>&lt;<span class="built_in">UITouch</span> *&gt; *)touches withEvent:(<span class="built_in">UIEvent</span> *)event&#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"===========%@"</span>,[<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">    [<span class="keyword">self</span> test];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)test&#123;</span><br><span class="line">    <span class="keyword">static</span> <span class="built_in">dispatch_once_t</span> onceToken;</span><br><span class="line">    <span class="built_in">dispatch_once</span>(&amp;onceToken,^&#123;</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@"一次性任务%@"</span>,[<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>多次点击后的结果为：</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2015/12/16/线程一次性代码/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </article>
 
 
-    
 
-  </section>
-
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
         </div>
@@ -724,6 +334,10 @@
 
 
         
+  <div class="comments" id="comments">
+    
+  </div>
+
 
       </div>
 
@@ -744,8 +358,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" src="/uploads/avatar.jpg" alt="“任志成”" itemprop="image"/>
           <p class="site-author-name" itemprop="name">“任志成”</p>
@@ -790,6 +413,23 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator">
+            <i class="fa fa-angle-double-up"></i>
+          </div>
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1_u3001_u7236_u7C7B"><span class="nav-number">1.</span> <span class="nav-text">1、父类</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#u5C0F_u7ED3_uFF1A"><span class="nav-number">1.1.</span> <span class="nav-text">小结：</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2_u3001_u5B50_u7C7B"><span class="nav-number">2.</span> <span class="nav-text">2、子类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3_u3001Optional"><span class="nav-number">3.</span> <span class="nav-text">3、Optional</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#u5C0F_u7ED3_uFF1A-1"><span class="nav-number">3.1.</span> <span class="nav-text">小结：</span></a></li></ol></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator">
+            <i class="fa fa-angle-double-down"></i>
+          </div>
+        </section>
       
 
     </div>
@@ -860,6 +500,167 @@
   <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.2" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 1 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    motionMiddleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          displaySidebar();
+        }
+      }
+    };
+  });
+</script>
+
+
 
   <script type="text/javascript" src="/js/bootstrap.js"></script>
 
