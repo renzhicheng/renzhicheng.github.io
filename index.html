@@ -197,6 +197,15 @@
 
     
     
+      
+      
+        
+        
+        
+      
+
+      
+    
 
     
       
@@ -271,7 +280,7 @@
 
       
         
-          <p>###基本动画 CABasicAnimation<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">-(<span class="keyword">void</span>)touchesBegan:(<span class="built_in">NSSet</span>&lt;<span class="built_in">UITouch</span> *&gt; *)touches withEvent:(<span class="built_in">UIEvent</span> *)event&#123;</span><br><span class="line">    <span class="built_in">CABasicAnimation</span> *anim = [[<span class="built_in">CABasicAnimation</span> alloc]init];</span><br><span class="line">    anim<span class="variable">.keyPath</span> = <span class="string">@"position.x"</span>;</span><br><span class="line">    anim<span class="variable">.byValue</span> = @<span class="number">10</span>;</span><br><span class="line">    anim<span class="variable">.fillMode</span> = k<span class="built_in">CAFillModeForwards</span>;</span><br><span class="line">    anim<span class="variable">.removedOnCompletion</span> = <span class="literal">NO</span>;</span><br><span class="line">    [<span class="keyword">self</span><span class="variable">.layer</span> addAnimation:anim forKey:<span class="literal">nil</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+          <h3 id="u57FA_u672C_u52A8_u753B_CABasicAnimation"><a href="#u57FA_u672C_u52A8_u753B_CABasicAnimation" class="headerlink" title="基本动画 CABasicAnimation"></a>基本动画 CABasicAnimation</h3><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">-(<span class="keyword">void</span>)touchesBegan:(<span class="built_in">NSSet</span>&lt;<span class="built_in">UITouch</span> *&gt; *)touches withEvent:(<span class="built_in">UIEvent</span> *)event&#123;</span><br><span class="line">    <span class="built_in">CABasicAnimation</span> *anim = [[<span class="built_in">CABasicAnimation</span> alloc]init];</span><br><span class="line">    anim<span class="variable">.keyPath</span> = <span class="string">@"position.x"</span>;</span><br><span class="line">    anim<span class="variable">.byValue</span> = @<span class="number">10</span>;</span><br><span class="line">    anim<span class="variable">.fillMode</span> = k<span class="built_in">CAFillModeForwards</span>;</span><br><span class="line">    anim<span class="variable">.removedOnCompletion</span> = <span class="literal">NO</span>;</span><br><span class="line">    [<span class="keyword">self</span><span class="variable">.layer</span> addAnimation:anim forKey:<span class="literal">nil</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>KVC</p>
 <blockquote>
