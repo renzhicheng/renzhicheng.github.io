@@ -197,15 +197,6 @@
 
     
     
-      
-      
-        
-        
-        
-      
-
-      
-    
 
     
       
@@ -280,9 +271,7 @@
 
       
         
-          <span itemprop="articleBody">
-            
-              <p>###基本动画 CABasicAnimation<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">-(<span class="keyword">void</span>)touchesBegan:(<span class="built_in">NSSet</span>&lt;<span class="built_in">UITouch</span> *&gt; *)touches withEvent:(<span class="built_in">UIEvent</span> *)event&#123;</span><br><span class="line">    <span class="built_in">CABasicAnimation</span> *anim = [[<span class="built_in">CABasicAnimation</span> alloc]init];</span><br><span class="line">    anim<span class="variable">.keyPath</span> = <span class="string">@"position.x"</span>;</span><br><span class="line">    anim<span class="variable">.byValue</span> = @<span class="number">10</span>;</span><br><span class="line">    anim<span class="variable">.fillMode</span> = k<span class="built_in">CAFillModeForwards</span>;</span><br><span class="line">    anim<span class="variable">.removedOnCompletion</span> = <span class="literal">NO</span>;</span><br><span class="line">    [<span class="keyword">self</span><span class="variable">.layer</span> addAnimation:anim forKey:<span class="literal">nil</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+          <p>###基本动画 CABasicAnimation<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">-(<span class="keyword">void</span>)touchesBegan:(<span class="built_in">NSSet</span>&lt;<span class="built_in">UITouch</span> *&gt; *)touches withEvent:(<span class="built_in">UIEvent</span> *)event&#123;</span><br><span class="line">    <span class="built_in">CABasicAnimation</span> *anim = [[<span class="built_in">CABasicAnimation</span> alloc]init];</span><br><span class="line">    anim<span class="variable">.keyPath</span> = <span class="string">@"position.x"</span>;</span><br><span class="line">    anim<span class="variable">.byValue</span> = @<span class="number">10</span>;</span><br><span class="line">    anim<span class="variable">.fillMode</span> = k<span class="built_in">CAFillModeForwards</span>;</span><br><span class="line">    anim<span class="variable">.removedOnCompletion</span> = <span class="literal">NO</span>;</span><br><span class="line">    [<span class="keyword">self</span><span class="variable">.layer</span> addAnimation:anim forKey:<span class="literal">nil</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <blockquote>
 <p>KVC</p>
 <blockquote>
@@ -293,44 +282,26 @@
 <li>fromValue</li>
 </ul>
 <blockquote>
-<p>fromValue is non-nil. Interpolates between fromValue and the current presentation value of the property.<br><br>指的是动画会从当前位置跳转到fromValue设值的位置再跳回来。</p>
+<p>fromValue is non-nil. Interpolates between fromValue and the current presentation value of the property.<br/><br>指的是动画会从当前位置跳转到fromValue设值的位置再跳回来。</p>
 </blockquote>
 <ul>
 <li>toValue</li>
 </ul>
 <blockquote>
-<p>toValue is non-nil. Interpolates between the current value of keyPath in the target layer’s presentation layer and toValue.<br><br>指的是动画会直接跳转到指定的位置。</p>
+<p>toValue is non-nil. Interpolates between the current value of keyPath in the target layer’s presentation layer and toValue.<br/><br>指的是动画会直接跳转到指定的位置。</p>
 </blockquote>
 <ul>
 <li>byValue</li>
 </ul>
 <blockquote>
-<p>byValue is non-nil. Interpolates between the current value of keyPath in the target layer’s presentation layer and that value plus byValue.<br><br>指的是动画会从当前位置跳到当前位置叠加值后的位置。</p>
+<p>byValue is non-nil. Interpolates between the current value of keyPath in the target layer’s presentation layer and that value plus byValue.<br/><br>指的是动画会从当前位置跳到当前位置叠加值后的位置。</p>
 </blockquote>
 </blockquote>
-<ul>
-<li><p>fillMode</p>
-<p>fillMode源自CAMediaTiming，主要是与动画时间有关。<br><br>fillMode的作用就是决定当前对象过了非active时间段的行为，比如动画的开始前，动画的结束后。如果是CAAnimation的动画，则需要将其removedOnCompletion设置为NO。要不然fillMode不起作用。</p>
-</li>
-<li><p>kCAFillModeForwards</p>
-<p>The receiver remains visible in its final state when the animation is completed.<br><br>保留最终状态的变化，在动画完成后。</p>
-</li>
-<li><p>removedOnCompletion</p>
-<p>When YES, the animation is removed from the target layer’s animations once its active duration has passed. Defaults to YES.<br><br>默认状态YES，指的应该是动作执行完成后是不是移除动作目标。</p>
-<p>代码中的position源自GKAgent2D：</p>
-<blockquote>
-<p>position:<br>The current position of the agent in 2D space.</p>
-<p>rotation<br>The rotation of the agent around the z-axis.</p>
-</blockquote>
-</li>
-</ul>
-<p>###关键帧动画<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">-(<span class="keyword">void</span>)viewDidLoad&#123;</span><br><span class="line">    [<span class="keyword">super</span> viewDidLoad];</span><br><span class="line">    <span class="built_in">UIView</span> *view = [[<span class="built_in">UIView</span> alloc]initWithFrame:<span class="built_in">CGRectMake</span>(<span class="number">100</span>, <span class="number">100</span>, <span class="number">20</span>, <span class="number">20</span>)];</span><br><span class="line">    view<span class="variable">.backgroundColor</span> = [<span class="built_in">UIColor</span> redColor];</span><br><span class="line">    [<span class="keyword">self</span><span class="variable">.view</span> addSubview:view];</span><br><span class="line">    <span class="keyword">self</span><span class="variable">.layer</span> = view<span class="variable">.layer</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">UIView</span> *view1 = [[<span class="built_in">UIView</span> alloc]initWithFrame:<span class="built_in">CGRectMake</span>(<span class="number">80</span>, <span class="number">100</span>, <span class="number">20</span>, <span class="number">20</span>)];</span><br><span class="line">    view1<span class="variable">.backgroundColor</span> = [<span class="built_in">UIColor</span> orangeColor];</span><br><span class="line">    [<span class="keyword">self</span><span class="variable">.view</span> addSubview:view1];</span><br><span class="line">    <span class="keyword">self</span><span class="variable">.layer2</span> = view1<span class="variable">.layer</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">UIView</span> *view2 = [[<span class="built_in">UIView</span> alloc]initWithFrame:<span class="built_in">CGRectMake</span>(<span class="number">80</span>, <span class="number">100</span>, <span class="number">20</span>, <span class="number">20</span>)];</span><br><span class="line">    view2<span class="variable">.backgroundColor</span> = [<span class="built_in">UIColor</span> blueColor];</span><br><span class="line">    [<span class="keyword">self</span><span class="variable">.view</span> addSubview:view2];</span><br><span class="line">    <span class="keyword">self</span><span class="variable">.layer3</span> = view2<span class="variable">.layer</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">-(<span class="keyword">void</span>)touchesBegan:(<span class="built_in">NSSet</span>&lt;<span class="built_in">UITouch</span> *&gt; *)touches withEvent:(<span class="built_in">UIEvent</span> *)event&#123;</span><br><span class="line">    <span class="built_in">CAKeyframeAnimation</span> *anim = [[<span class="built_in">CAKeyframeAnimation</span> alloc]init];</span><br><span class="line">    anim<span class="variable">.keyPath</span> = <span class="string">@"position"</span>;</span><br><span class="line">    <span class="built_in">UIBezierPath</span> *path = [<span class="built_in">UIBezierPath</span> bezierPathWithOvalInRect:<span class="built_in">CGRectMake</span>(<span class="number">20</span>, <span class="number">20</span>, <span class="number">160</span>, <span class="number">160</span>)];</span><br><span class="line">    anim<span class="variable">.path</span> = path<span class="variable">.CGPath</span>;</span><br><span class="line">    anim<span class="variable">.duration</span> =<span class="number">3</span>;</span><br><span class="line">    anim<span class="variable">.repeatCount</span> = HUGE_VALF;</span><br><span class="line">    [<span class="keyword">self</span><span class="variable">.layer</span> addAnimation:anim forKey:<span class="literal">nil</span>];</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">CAKeyframeAnimation</span> *anim1 = [[<span class="built_in">CAKeyframeAnimation</span> alloc]init];</span><br><span class="line">    anim1<span class="variable">.keyPath</span> = <span class="string">@"position"</span>;</span><br><span class="line">    <span class="built_in">UIBezierPath</span> *path1 = [<span class="built_in">UIBezierPath</span> bezierPathWithArcCenter:<span class="built_in">CGPointMake</span>(<span class="number">100</span>, <span class="number">100</span>) radius:<span class="number">80</span> startAngle:<span class="number">0</span> endAngle:M_PI * <span class="number">2</span> clockwise:<span class="literal">YES</span>];</span><br><span class="line">    anim1<span class="variable">.path</span> = path1<span class="variable">.CGPath</span>;</span><br><span class="line">    anim1<span class="variable">.duration</span> = <span class="number">3</span>;</span><br><span class="line">    anim1<span class="variable">.repeatCount</span> = HUGE_VALF;</span><br><span class="line">    [<span class="keyword">self</span><span class="variable">.layer2</span> addAnimation:anim1 forKey:<span class="literal">nil</span>];</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">CAKeyframeAnimation</span> *anim2 = [[<span class="built_in">CAKeyframeAnimation</span> alloc]init];</span><br><span class="line">    anim2<span class="variable">.keyPath</span> = <span class="string">@"position"</span>;</span><br><span class="line">    <span class="built_in">UIBezierPath</span> *path2 = [<span class="built_in">UIBezierPath</span> bezierPathWithRect:<span class="built_in">CGRectMake</span>(<span class="number">20</span>, <span class="number">20</span>, <span class="number">160</span>, <span class="number">160</span>)];</span><br><span class="line">    anim2<span class="variable">.path</span> = path2<span class="variable">.CGPath</span>;</span><br><span class="line">    anim2<span class="variable">.duration</span> = <span class="number">3</span>;</span><br><span class="line">    anim2<span class="variable">.repeatCount</span> = HUGE_VALF;</span><br><span class="line">    [<span class="keyword">self</span><span class="variable">.layer3</span> addAnimation:anim2 forKey:<span class="literal">nil</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>可以看到运行后的结果：<br><br>anim和anim1的运动路径是一样的，但是相同园内一圈的时间不一样。<br><br>anim和anim2的运动路径虽然不一样，但是一周所用的时间确实一样的。<br><br>也就是说视觉上虽然anim的运动路径是一个圆，但是它确实按照矩形的运动路径进行的。这个就是<code>bezierPathWithOvalInRect:</code>与<code>bezierPathWithArcCenter:</code>的区别，前者实际路径是圆，时间计算确实按照矩形进行计算的，后者是正常的圆路径及时间。</p>
-<p>新建BGView继承UIView，可以更直观的观察。</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)drawRect:(<span class="built_in">CGRect</span>)rect &#123;</span><br><span class="line">    <span class="built_in">UIBezierPath</span> *path = [<span class="built_in">UIBezierPath</span> bezierPathWithOvalInRect:<span class="built_in">CGRectMake</span>(<span class="number">20</span>, <span class="number">20</span>, <span class="number">160</span>, <span class="number">160</span>)];</span><br><span class="line">    [path stroke];</span><br><span class="line">    <span class="built_in">UIBezierPath</span> *path1 = [<span class="built_in">UIBezierPath</span> bezierPathWithArcCenter:<span class="built_in">CGPointMake</span>(<span class="number">100</span>, <span class="number">100</span>) radius:<span class="number">80</span> startAngle:<span class="number">0</span> endAngle:<span class="number">2</span>*M_PI clockwise:<span class="literal">YES</span>];</span><br><span class="line">    [path1 stroke];</span><br><span class="line">    <span class="built_in">UIBezierPath</span> *path2 = [<span class="built_in">UIBezierPath</span> bezierPathWithRect:<span class="built_in">CGRectMake</span>(<span class="number">20</span>, <span class="number">20</span>, <span class="number">160</span>, <span class="number">160</span>)];</span><br><span class="line">    [path2 stroke];    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-            
-          </span>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/12/28/基本动画“/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -890,7 +861,7 @@
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">11</span>
+              <span class="site-state-item-count">8</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>
