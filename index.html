@@ -197,6 +197,113 @@
 
     
     
+      
+      
+        
+        
+        
+      
+
+      
+    
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/01/08/swift-AFNetWorking/" itemprop="url">
+                  swift-AFNetWorking请求数据的自定义及封装
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2016-01-08T00:17:56+08:00" content="2016-01-08">
+              2016-01-08
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/iOS探究之路/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS探究之路</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h4 id="u4E00_u3001_u7B80_u5355_u7684_u8BF7_u6C42"><a href="#u4E00_u3001_u7B80_u5355_u7684_u8BF7_u6C42" class="headerlink" title="一、简单的请求"></a>一、简单的请求</h4><p>我使用的是一个天气api进行测试：<br> <a href="http://www.weather.com.cn/data/sk/101010100.html">http://www.weather.com.cn/data/sk/101010100.html</a></p>
+<p><img src="http://7xplbf.com1.z0.glb.clouddn.com/Snip20160107_1.png" alt="GitHub set up"></p>
+<p>使用chrome在inspect下可以查看到请求方式是GET，content-Type: text/html,确定这两个可以进行一个简单的AFNetWorking的调用。</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/01/08/swift-AFNetWorking/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
 
     
       
@@ -271,7 +378,7 @@
 
       
         
-          <h3 id="u57FA_u672C_u52A8_u753B_CABasicAnimation"><a href="#u57FA_u672C_u52A8_u753B_CABasicAnimation" class="headerlink" title="基本动画 CABasicAnimation"></a>基本动画 CABasicAnimation</h3><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">-(<span class="keyword">void</span>)touchesBegan:(<span class="built_in">NSSet</span>&lt;<span class="built_in">UITouch</span> *&gt; *)touches withEvent:(<span class="built_in">UIEvent</span> *)event&#123;</span><br><span class="line">    <span class="built_in">CABasicAnimation</span> *anim = [[<span class="built_in">CABasicAnimation</span> alloc]init];</span><br><span class="line">    anim<span class="variable">.keyPath</span> = <span class="string">@"position.x"</span>;</span><br><span class="line">    anim<span class="variable">.byValue</span> = @<span class="number">10</span>;</span><br><span class="line">    anim<span class="variable">.fillMode</span> = k<span class="built_in">CAFillModeForwards</span>;</span><br><span class="line">    anim<span class="variable">.removedOnCompletion</span> = <span class="literal">NO</span>;</span><br><span class="line">    [<span class="keyword">self</span><span class="variable">.layer</span> addAnimation:anim forKey:<span class="literal">nil</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          <h3 id="u57FA_u672C_u52A8_u753B_CABasicAnimation"><a href="#u57FA_u672C_u52A8_u753B_CABasicAnimation" class="headerlink" title="基本动画 CABasicAnimation"></a>基本动画 CABasicAnimation</h3><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)touchesBegan:(<span class="built_in">NSSet</span>&lt;<span class="built_in">UITouch</span> *&gt; *)touches withEvent:(<span class="built_in">UIEvent</span> *)event&#123;</span><br><span class="line">    <span class="built_in">CABasicAnimation</span> *anim = [[<span class="built_in">CABasicAnimation</span> alloc]init];</span><br><span class="line">    anim<span class="variable">.keyPath</span> = <span class="string">@"position.x"</span>;</span><br><span class="line">    anim<span class="variable">.byValue</span> = @<span class="number">10</span>;</span><br><span class="line">    anim<span class="variable">.fillMode</span> = k<span class="built_in">CAFillModeForwards</span>;</span><br><span class="line">    anim<span class="variable">.removedOnCompletion</span> = <span class="literal">NO</span>;</span><br><span class="line">    [<span class="keyword">self</span><span class="variable">.layer</span> addAnimation:anim forKey:<span class="literal">nil</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>KVC</p>
 <blockquote>
@@ -847,21 +954,21 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">6</span>
+              <span class="site-state-item-count">7</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
           <div class="site-state-item site-state-categories">
             <a href="/categories">
-              <span class="site-state-item-count">3</span>
+              <span class="site-state-item-count">4</span>
               <span class="site-state-item-name">分类</span>
               </a>
           </div>
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">8</span>
+              <span class="site-state-item-count">9</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>
@@ -897,7 +1004,7 @@
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2015</span>
+  <span itemprop="copyrightYear">2016</span>
   <span class="with-love">
     <i class="icon-next-heart fa fa-heart"></i>
   </span>
