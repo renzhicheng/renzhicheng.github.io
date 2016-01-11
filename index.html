@@ -928,6 +928,114 @@
 
 
     
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/11/12/iOS手势/" itemprop="url">
+                  iOS手势
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2015-11-12T01:45:42+08:00" content="2015-11-12">
+              2015-11-12
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/iOS简简单单/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS简简单单</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h4 id="1-tap__u624B_u52BF"><a href="#1-tap__u624B_u52BF" class="headerlink" title="1.tap 手势"></a>1.tap 手势</h4><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)viewDidLoad &#123;</span><br><span class="line">    [<span class="keyword">super</span> viewDidLoad];</span><br><span class="line">    <span class="built_in">UITapGestureRecognizer</span> *tap = [[<span class="built_in">UITapGestureRecognizer</span> alloc]initWithTarget:<span class="keyword">self</span> action:<span class="keyword">@selector</span>(tap:)];</span><br><span class="line">    [<span class="keyword">self</span><span class="variable">.image</span> addGestureRecognizer:tap];</span><br><span class="line">&#125;</span><br><span class="line">-(<span class="keyword">void</span>)tap:(<span class="built_in">UITapGestureRecognizer</span>*)sender&#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"tap"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>target</p>
+<blockquote>
+<p>An object that is the recipient of action messages sent by the receiver when it recognizes a gesture. nil is not a valid value.</p>
+</blockquote>
+<p>action</p>
+<blockquote>
+<p>A selector that identifies the method implemented by the target to handle the gesture recognized by the receiver. The action selector must conform to the signature described in the class overview. NULL is not a valid value.</p>
+</blockquote>
+</blockquote>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//敲击N次输出</span></span><br><span class="line">tap.numberOfTapsRequired = <span class="number">2</span>;</span><br><span class="line"><span class="comment">//需要几根手指</span></span><br><span class="line">tap.numberOfTouchesRequired = <span class="number">2</span>;</span><br></pre></td></tr></table></figure>
+<hr>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/11/12/iOS手势/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
 
   </section>
 
@@ -970,21 +1078,21 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">7</span>
+              <span class="site-state-item-count">8</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
           <div class="site-state-item site-state-categories">
             <a href="/categories">
-              <span class="site-state-item-count">4</span>
+              <span class="site-state-item-count">3</span>
               <span class="site-state-item-name">分类</span>
               </a>
           </div>
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">9</span>
+              <span class="site-state-item-count">10</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>

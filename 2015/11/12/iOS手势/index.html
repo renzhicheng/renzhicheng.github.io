@@ -35,7 +35,7 @@
 <link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Swift闭包," />
+  <meta name="keywords" content="iOS手势," />
 
 
 
@@ -51,46 +51,16 @@
 
 
 
-<meta name="description" content="关于闭包的定义：
-闭包是功能性包自包含模块，可以再代码中传递和使用。类似C和OC中的block，闭包可以捕获和存储其所在上下文中任意常量和变量的引用。
-
-闭包有三种形式：
-
-全局函数是一个有名字但不会捕获任何值的闭包。
-嵌套函数是一个有名字并可以捕获到其封闭函数域内的值的闭包。
-闭包表达式是一个利用轻量级语法所写的，可以捕获其上下文中变量或常量值的匿名闭包。
-
-
-主要用于异步操作完成后代码的回调，">
+<meta name="description" content="1.tap 手势12345678- (void)viewDidLoad &amp;#123;    [super viewDidLoad];    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tap:)];    [self.image addGestur">
 <meta property="og:type" content="article">
-<meta property="og:title" content="swift闭包初涉">
-<meta property="og:url" content="http://yoursite.com/2015/12/24/swift闭包/index.html">
+<meta property="og:title" content="iOS手势">
+<meta property="og:url" content="http://yoursite.com/2015/11/12/iOS手势/index.html">
 <meta property="og:site_name" content="一只橙子">
-<meta property="og:description" content="关于闭包的定义：
-闭包是功能性包自包含模块，可以再代码中传递和使用。类似C和OC中的block，闭包可以捕获和存储其所在上下文中任意常量和变量的引用。
-
-闭包有三种形式：
-
-全局函数是一个有名字但不会捕获任何值的闭包。
-嵌套函数是一个有名字并可以捕获到其封闭函数域内的值的闭包。
-闭包表达式是一个利用轻量级语法所写的，可以捕获其上下文中变量或常量值的匿名闭包。
-
-
-主要用于异步操作完成后代码的回调，">
-<meta property="og:updated_time" content="2015-12-26T04:56:06.000Z">
+<meta property="og:description" content="1.tap 手势12345678- (void)viewDidLoad &amp;#123;    [super viewDidLoad];    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tap:)];    [self.image addGestur">
+<meta property="og:updated_time" content="2016-01-11T18:00:59.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="swift闭包初涉">
-<meta name="twitter:description" content="关于闭包的定义：
-闭包是功能性包自包含模块，可以再代码中传递和使用。类似C和OC中的block，闭包可以捕获和存储其所在上下文中任意常量和变量的引用。
-
-闭包有三种形式：
-
-全局函数是一个有名字但不会捕获任何值的闭包。
-嵌套函数是一个有名字并可以捕获到其封闭函数域内的值的闭包。
-闭包表达式是一个利用轻量级语法所写的，可以捕获其上下文中变量或常量值的匿名闭包。
-
-
-主要用于异步操作完成后代码的回调，">
+<meta name="twitter:title" content="iOS手势">
+<meta name="twitter:description" content="1.tap 手势12345678- (void)viewDidLoad &amp;#123;    [super viewDidLoad];    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tap:)];    [self.image addGestur">
 
 
 
@@ -102,7 +72,7 @@
   };
 </script>
 
-  <title> swift闭包初涉 | 一只橙子 </title>
+  <title> iOS手势 | 一只橙子 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -242,7 +212,7 @@
             
             
               
-                swift闭包初涉
+                iOS手势
               
             
           </h1>
@@ -251,8 +221,8 @@
         <div class="post-meta">
           <span class="post-time">
             发表于
-            <time itemprop="dateCreated" datetime="2015-12-24T15:12:24+08:00" content="2015-12-24">
-              2015-12-24
+            <time itemprop="dateCreated" datetime="2015-11-12T01:45:42+08:00" content="2015-11-12">
+              2015-11-12
             </time>
           </span>
 
@@ -261,8 +231,8 @@
               &nbsp; | &nbsp; 分类于
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/iOS凿壁偷光/" itemprop="url" rel="index">
-                    <span itemprop="name">iOS凿壁偷光</span>
+                  <a href="/categories/iOS简简单单/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS简简单单</span>
                   </a>
                 </span>
 
@@ -290,29 +260,48 @@
       
 
       
-        <span itemprop="articleBody"><p>关于闭包的定义：</p>
-<p>闭包是功能性包自包含模块，可以再代码中传递和使用。类似C和OC中的block，闭包可以捕获和存储其所在上下文中任意常量和变量的引用。</p>
+        <span itemprop="articleBody"><h4 id="1-tap__u624B_u52BF"><a href="#1-tap__u624B_u52BF" class="headerlink" title="1.tap 手势"></a>1.tap 手势</h4><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)viewDidLoad &#123;</span><br><span class="line">    [<span class="keyword">super</span> viewDidLoad];</span><br><span class="line">    <span class="built_in">UITapGestureRecognizer</span> *tap = [[<span class="built_in">UITapGestureRecognizer</span> alloc]initWithTarget:<span class="keyword">self</span> action:<span class="keyword">@selector</span>(tap:)];</span><br><span class="line">    [<span class="keyword">self</span><span class="variable">.image</span> addGestureRecognizer:tap];</span><br><span class="line">&#125;</span><br><span class="line">-(<span class="keyword">void</span>)tap:(<span class="built_in">UITapGestureRecognizer</span>*)sender&#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"tap"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <blockquote>
-<p>闭包有三种形式：</p>
-<ol>
-<li>全局函数是一个有名字但不会捕获任何值的闭包。</li>
-<li>嵌套函数是一个有名字并可以捕获到其封闭函数域内的值的闭包。</li>
-<li>闭包表达式是一个利用轻量级语法所写的，可以捕获其上下文中变量或常量值的匿名闭包。</li>
-</ol>
+<p>target</p>
+<blockquote>
+<p>An object that is the recipient of action messages sent by the receiver when it recognizes a gesture. nil is not a valid value.</p>
 </blockquote>
-<p>主要用于异步操作完成后代码的回调，网络访问结果一参数形式传递给调用方。在使用中，闭包会预先定义好一个代码块。</p>
-<p>代码测试将预先定义好的闭包及函数都放入test函数进行调用。</p>
+<p>action</p>
+<blockquote>
+<p>A selector that identifies the method implemented by the target to handle the gesture recognized by the receiver. The action selector must conform to the signature described in the class overview. NULL is not a valid value.</p>
+</blockquote>
+</blockquote>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//敲击N次输出</span></span><br><span class="line">tap.numberOfTapsRequired = <span class="number">2</span>;</span><br><span class="line"><span class="comment">//需要几根手指</span></span><br><span class="line">tap.numberOfTouchesRequired = <span class="number">2</span>;</span><br></pre></td></tr></table></figure>
+<hr>
 <a id="more"></a>
-<p>方便闭包理解的写法：</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">class ViewController: <span class="built_in">UIViewController</span> &#123;</span><br><span class="line">    override func viewDidLoad() &#123;</span><br><span class="line">        <span class="keyword">super</span><span class="variable">.viewDidLoad</span>()</span><br><span class="line">        test1A()</span><br><span class="line">        test1B()</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//无参数无返回值函数</span></span><br><span class="line">    func test1A()&#123;</span><br><span class="line">        func funcTest()&#123;</span><br><span class="line">            print(<span class="string">"print func"</span>)</span><br><span class="line">        &#125;</span><br><span class="line">        funcTest()</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//无参数无返回值闭包</span></span><br><span class="line">    func test1B()&#123;</span><br><span class="line">        let closure = &#123;</span><br><span class="line">            print(<span class="string">"print closure"</span>)</span><br><span class="line">        &#125;</span><br><span class="line">        closure()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>有参数无返回值：</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">override func viewDidLoad() &#123;</span><br><span class="line">        <span class="keyword">super</span><span class="variable">.viewDidLoad</span>()</span><br><span class="line">        test2A()</span><br><span class="line">        test2B()</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//有参数无返回值函数</span></span><br><span class="line">    func test2A()&#123;</span><br><span class="line">        func funcTest(num1 a : Int, num2 b : Int)&#123;</span><br><span class="line">            let result = a + b</span><br><span class="line">            print(<span class="string">"func:\(result)"</span>)</span><br><span class="line">        &#125;</span><br><span class="line">        funcTest(num1: <span class="number">20</span>, num2: <span class="number">20</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//有参数无返回值闭包</span></span><br><span class="line">    func test2B()&#123;</span><br><span class="line">    		<span class="comment">//in 的作用是区分闭包的代码及参数</span></span><br><span class="line">        let closure = &#123;(num1 a : Int, num2 b : Int) <span class="keyword">in</span>             				 let result = a + b</span><br><span class="line">            print(<span class="string">"closure:\(result)"</span>)</span><br><span class="line">        &#125;</span><br><span class="line">        closure(num1: <span class="number">20</span>, num2: <span class="number">20</span>)</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<p>有参数有返回值：</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">override func viewDidLoad() &#123;</span><br><span class="line">       <span class="keyword">super</span><span class="variable">.viewDidLoad</span>()</span><br><span class="line">       test3A()</span><br><span class="line">       test3B()</span><br><span class="line">   &#125;</span><br><span class="line">   </span><br><span class="line">   <span class="comment">//有参数有返回值函数</span></span><br><span class="line">   func test3A()&#123;</span><br><span class="line">       func funcTest(num1 a : Int, num2 b : Int) -&gt; Int&#123;</span><br><span class="line">           <span class="keyword">return</span> a+b</span><br><span class="line">       &#125;</span><br><span class="line">       let result = funcTest(num1: <span class="number">20</span>, num2: <span class="number">20</span>)</span><br><span class="line">       print(<span class="string">"func:\(result)"</span>)</span><br><span class="line">   &#125;</span><br><span class="line">   </span><br><span class="line">   <span class="comment">//有参数有返回值闭包</span></span><br><span class="line">   func test3B()&#123;</span><br><span class="line">       let closure = &#123;(num1 a : Int, num2 b : Int) -&gt; Int <span class="keyword">in</span></span><br><span class="line">           <span class="keyword">return</span> a + b</span><br><span class="line">       &#125;</span><br><span class="line">       let result = closure(num1: <span class="number">20</span>, num2: <span class="number">20</span>)</span><br><span class="line">       print(<span class="string">"closure:\(result)"</span>)</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-<p>上面的写法主要是帮助理解闭包，以及block的原理。</p>
-<p>开始尝试将闭包作为函数参数来回调（基于C语言的函数指针）。</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">override func viewDidLoad() &#123;</span><br><span class="line">        <span class="keyword">super</span><span class="variable">.viewDidLoad</span>()</span><br><span class="line">        let closure = &#123;</span><br><span class="line">            <span class="comment">//让一个闭包与众不同的是里面不同的参数设置，也是靠这个定位一个闭包</span></span><br><span class="line">            (response : String) -&gt; () <span class="keyword">in</span></span><br><span class="line">            print(<span class="string">"已经——&gt;\(response)"</span>)</span><br><span class="line">        &#125;</span><br><span class="line">        dataLoad(closure)     </span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//这里面的response : String就相当于将闭包的申明调用了过来。这样直接在函数中可以直接实现即可。</span></span><br><span class="line">    func dataLoad(callBack : (response : String) -&gt; ())&#123;</span><br><span class="line">        <span class="comment">//来个异步加载</span></span><br><span class="line">        <span class="built_in">dispatch_async</span>(dispatch_get_global_queue(<span class="number">0</span>, <span class="number">0</span>)) &#123; () -&gt; Void <span class="keyword">in</span></span><br><span class="line">            <span class="comment">//假设response获得了数据</span></span><br><span class="line">            let endOfResponse = <span class="string">"获得数据"</span></span><br><span class="line">            <span class="comment">//将数据返回给主线程</span></span><br><span class="line">            <span class="built_in">dispatch_async</span>(dispatch_get_main_queue(), &#123; () -&gt; Void <span class="keyword">in</span></span><br><span class="line">               <span class="comment">//给dataloade函数参数返回值，实现closure闭包</span></span><br><span class="line">                callBack(response: endOfResponse)</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<p>我个人的理解，这段函数中，参数其实就是闭包的声明，函数体中再将闭包实现。这样这段函数中的闭包相当于完成声明及实现，因此，在调用闭包就能实现闭包中本一定义好的代码块了。</p>
+<h4 id="2-swipe_u624B_u52BF"><a href="#2-swipe_u624B_u52BF" class="headerlink" title="2.swipe手势"></a>2.swipe手势</h4><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)viewDidLoad &#123;</span><br><span class="line">    [<span class="keyword">super</span> viewDidLoad];</span><br><span class="line">    <span class="comment">//turn right</span></span><br><span class="line">    <span class="built_in">UISwipeGestureRecognizer</span> *swipe = [[<span class="built_in">UISwipeGestureRecognizer</span> alloc]initWithTarget:<span class="keyword">self</span> action:<span class="keyword">@selector</span>(swipe:)];</span><br><span class="line">    [<span class="keyword">self</span><span class="variable">.image</span> addGestureRecognizer:swipe];</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//rutn right</span></span><br><span class="line">    <span class="built_in">UISwipeGestureRecognizer</span> *swipe1 = [[<span class="built_in">UISwipeGestureRecognizer</span> alloc]initWithTarget:<span class="keyword">self</span> action:<span class="keyword">@selector</span>(swipe:)];</span><br><span class="line">    swipe1<span class="variable">.direction</span> = <span class="built_in">UISwipeGestureRecognizerDirectionLeft</span>;</span><br><span class="line">    [<span class="keyword">self</span><span class="variable">.image</span> addGestureRecognizer:swipe1];</span><br><span class="line">&#125;</span><br><span class="line">-(<span class="keyword">void</span>)swipe:(<span class="built_in">UISwipeGestureRecognizer</span>*)sender&#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"swipe"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>注意：<code>UISwipeGestureRecognizerDirectionLeft</code>和<code>UISwipeGestureRecognizerDirectionRight</code>是指手势朝向左或者右。默认的方向是向右。</p>
+<hr>
+<h4 id="3-rotation_u624B_u52BF"><a href="#3-rotation_u624B_u52BF" class="headerlink" title="3.rotation手势"></a>3.rotation手势</h4><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)viewDidLoad &#123;</span><br><span class="line">    [<span class="keyword">super</span> viewDidLoad];</span><br><span class="line">    <span class="built_in">UIRotationGestureRecognizer</span> *rotation = [[<span class="built_in">UIRotationGestureRecognizer</span> alloc]initWithTarget:<span class="keyword">self</span> action:<span class="keyword">@selector</span>(rotation:)];</span><br><span class="line">    [<span class="keyword">self</span><span class="variable">.image</span> addGestureRecognizer:rotation];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">-(<span class="keyword">void</span>)rotation:(<span class="built_in">UIRotationGestureRecognizer</span>*)sender&#123;</span><br><span class="line"><span class="comment">//    self.image.transform = CGAffineTransformMakeRotation(sender.rotation);</span></span><br><span class="line">    <span class="keyword">self</span><span class="variable">.image</span><span class="variable">.transform</span> = <span class="built_in">CGAffineTransformRotate</span>(<span class="keyword">self</span><span class="variable">.image</span><span class="variable">.transform</span>, sender<span class="variable">.rotation</span>);</span><br><span class="line">    sender<span class="variable">.rotation</span> = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>注意：如果使用<code>self.image.transform = CGAffineTransformMakeRotation(sender.rotation);</code>图片每次触摸旋转，如果再次触摸旋转的话就会重新重0开始旋转。</p>
+<p>使用：<br><code>self.image.transform = CGAffineTransformRotate(self.image.transform, sender.rotation);</code>则是再当前图片的新位置重新计算角度。但是要注意的是，图片角度每次是叠加的，所以要添加<code>sender.rotation = 0;</code>类似刷新的作用。</p>
+<hr>
+<h4 id="4-pinch_u624B_u52BF"><a href="#4-pinch_u624B_u52BF" class="headerlink" title="4.pinch手势"></a>4.pinch手势</h4><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)viewDidLoad &#123;</span><br><span class="line">    [<span class="keyword">super</span> viewDidLoad];</span><br><span class="line">    <span class="built_in">UIPinchGestureRecognizer</span> *pinch = [[<span class="built_in">UIPinchGestureRecognizer</span> alloc]initWithTarget:<span class="keyword">self</span> action:<span class="keyword">@selector</span>(pinch:)];</span><br><span class="line">    [<span class="keyword">self</span><span class="variable">.image</span> addGestureRecognizer:pinch];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">-(<span class="keyword">void</span>)pinch:(<span class="built_in">UIPinchGestureRecognizer</span>*)sender&#123;</span><br><span class="line">    <span class="keyword">self</span><span class="variable">.image</span><span class="variable">.transform</span> = <span class="built_in">CGAffineTransformScale</span>(<span class="keyword">self</span><span class="variable">.image</span><span class="variable">.transform</span>, sender<span class="variable">.scale</span>, sender<span class="variable">.scale</span>);</span><br><span class="line">    sender<span class="variable">.scale</span> = <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>scale</p>
+<blockquote>
+<p>pecifies the scale factor applied to the cell. Animatable.</p>
+<p>The scale of the cell will vary by a random amount within the range specified by scaleRange. The scaleSpeed property determines the rate of change.</p>
+<p>The default value of this property is 1.0.</p>
+</blockquote>
+</blockquote>
+<hr>
+<p>####5.pan手势<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)viewDidLoad &#123;</span><br><span class="line">    [<span class="keyword">super</span> viewDidLoad];</span><br><span class="line">    <span class="built_in">UIPanGestureRecognizer</span> *pan = [[<span class="built_in">UIPanGestureRecognizer</span> alloc]initWithTarget:<span class="keyword">self</span> action:<span class="keyword">@selector</span>(pan:)];</span><br><span class="line">    [<span class="keyword">self</span><span class="variable">.image</span> addGestureRecognizer:pan];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">-(<span class="keyword">void</span>)pan:(<span class="built_in">UIPanGestureRecognizer</span>*)sender&#123;</span><br><span class="line">    <span class="built_in">CGPoint</span> pan = [sender translationInView:sender<span class="variable">.view</span>];</span><br><span class="line">    <span class="keyword">self</span><span class="variable">.image</span><span class="variable">.transform</span> = <span class="built_in">CGAffineTransformTranslate</span>(<span class="keyword">self</span><span class="variable">.image</span><span class="variable">.transform</span>, pan<span class="variable">.x</span>, pan<span class="variable">.y</span>);</span><br><span class="line">    [sender setTranslation:<span class="built_in">CGPointZero</span> inView:sender<span class="variable">.view</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>translationInView:</p>
+<blockquote>
+<p>The translation of the pan gesture in the coordinate system of the specified view.</p>
+</blockquote>
+<p>setTranslation:inView:</p>
+<blockquote>
+<p>sets the translation value in the coordinate system of the specified view.</p>
+</blockquote>
+</blockquote>
 </span>
       
     </div>
@@ -321,7 +310,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Swift闭包/" rel="tag">#Swift闭包</a>
+            <a href="/tags/iOS手势/" rel="tag">#iOS手势</a>
           
         </div>
       
@@ -330,16 +319,12 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/12/18/自定义tableView每一个cell/" rel="next" title="自定义tableView每一个cell">
-                <i class="fa fa-chevron-left"></i> 自定义tableView每一个cell
-              </a>
-            
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2015/12/26/Swift重载/" rel="prev" title="Swift重载">
-                Swift重载 <i class="fa fa-chevron-right"></i>
+              <a href="/2015/12/16/线程一次性代码/" rel="prev" title="线程中一次性代码测试">
+                线程中一次性代码测试 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -454,7 +439,7 @@
               
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-tap__u624B_u52BF"><span class="nav-number">1.</span> <span class="nav-text">1.tap 手势</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-swipe_u624B_u52BF"><span class="nav-number">2.</span> <span class="nav-text">2.swipe手势</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-rotation_u624B_u52BF"><span class="nav-number">3.</span> <span class="nav-text">3.rotation手势</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-pinch_u624B_u52BF"><span class="nav-number">4.</span> <span class="nav-text">4.pinch手势</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
