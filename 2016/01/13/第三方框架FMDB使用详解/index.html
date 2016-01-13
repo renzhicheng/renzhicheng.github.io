@@ -1,0 +1,691 @@
+<!doctype html>
+<html class="theme-next   use-motion ">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="SQL," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
+
+
+
+
+
+
+<meta name="description" content="一、准备阶段去官方Github上下载Fmdb，进行简单的配置，我这里使用的swift配置的。拖入Fmdb到xcode中，swift在这里要注意extra中的Swift extensions拖入到xcode中。新建OC与swift的桥接文件。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="第三方框架FMDB使用详解">
+<meta property="og:url" content="http://yoursite.com/2016/01/13/第三方框架FMDB使用详解/index.html">
+<meta property="og:site_name" content="一只橙子">
+<meta property="og:description" content="一、准备阶段去官方Github上下载Fmdb，进行简单的配置，我这里使用的swift配置的。拖入Fmdb到xcode中，swift在这里要注意extra中的Swift extensions拖入到xcode中。新建OC与swift的桥接文件。">
+<meta property="og:image" content="http://7xplbf.com1.z0.glb.clouddn.com/FMDB-1.png">
+<meta property="og:image" content="http://7xplbf.com1.z0.glb.clouddn.com/FMDB-2.png">
+<meta property="og:image" content="http://7xplbf.com1.z0.glb.clouddn.com/FMDB-3.png">
+<meta property="og:image" content="http://7xplbf.com1.z0.glb.clouddn.com/FMDB-4.png">
+<meta property="og:image" content="http://7xplbf.com1.z0.glb.clouddn.com/FDBW-6.png">
+<meta property="og:image" content="http://7xplbf.com1.z0.glb.clouddn.com/FDBW-5.png">
+<meta property="og:image" content="http://7xplbf.com1.z0.glb.clouddn.com/%E6%95%B0%E6%8D%AE%E5%AD%97%E5%85%B8%E6%8F%92%E5%85%A5.png">
+<meta property="og:image" content="http://7xplbf.com1.z0.glb.clouddn.com/%E6%95%B0%E6%8D%AE%E5%88%A0%E9%99%A4.png">
+<meta property="og:image" content="http://7xplbf.com1.z0.glb.clouddn.com/%E6%95%B0%E6%8D%AE%E6%9B%B4%E6%96%B0.png">
+<meta property="og:updated_time" content="2016-01-13T07:17:59.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="第三方框架FMDB使用详解">
+<meta name="twitter:description" content="一、准备阶段去官方Github上下载Fmdb，进行简单的配置，我这里使用的swift配置的。拖入Fmdb到xcode中，swift在这里要注意extra中的Swift extensions拖入到xcode中。新建OC与swift的桥接文件。">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: 'post',
+    motion: true
+  };
+</script>
+
+  <title> 第三方框架FMDB使用详解 | 一只橙子 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?522d83ba5b43c66bcc66c5e6c273682e";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">一只橙子</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content">
+          
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                第三方框架FMDB使用详解
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2016-01-13T15:16:25+08:00" content="2016-01-13">
+              2016-01-13
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><h4 id="u4E00_u3001_u51C6_u5907_u9636_u6BB5"><a href="#u4E00_u3001_u51C6_u5907_u9636_u6BB5" class="headerlink" title="一、准备阶段"></a>一、准备阶段</h4><p>去官方Github上下载Fmdb，进行简单的配置，我这里使用的swift配置的。<br><img src="http://7xplbf.com1.z0.glb.clouddn.com/FMDB-1.png" alt="GitHub set up"><br>拖入Fmdb到xcode中，swift在这里要注意extra中的Swift extensions拖入到xcode中。<br><img src="http://7xplbf.com1.z0.glb.clouddn.com/FMDB-2.png" alt="GitHub set up"><br>新建OC与swift的桥接文件。</p>
+<a id="more"></a>
+<p><img src="http://7xplbf.com1.z0.glb.clouddn.com/FMDB-3.png" alt="GitHub set up"><br>设置Bulid Setting，找到Objective-C Bridging Header，设置符合路径，可参考图片。<br><img src="http://7xplbf.com1.z0.glb.clouddn.com/FMDB-4.png" alt="GitHub set up"><br>添加动态库。<br><img src="http://7xplbf.com1.z0.glb.clouddn.com/FDBW-6.png" alt="GitHub set up"><br>由于查看支持版本发现，只支持9.0，为了保证所有版本都获得支持，需要以下操作，参照图片，复制路径，并从xcode中移除文件，注意只是xcode中。<br><img src="http://7xplbf.com1.z0.glb.clouddn.com/FDBW-5.png" alt="GitHub set up"><br>重新添加动态库，在Other中通过commond+shift+g调用刚刚复制的路径，找到dylib文件，重新添加并编译，准备阶段就已经完成。</p>
+<h4 id="u4E8C_u3001DEMO1"><a href="#u4E8C_u3001DEMO1" class="headerlink" title="二、DEMO1"></a>二、DEMO1</h4><p>通常在开发中，数据库及网络等工具类，一般会使用单例，所以先创建一个单例。在swift中创建一个轻量级的类，不继承任何父类。</p>
+<p>打开Other新建一个的空文件为DB.sql</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">--创建个人表，需要进行判断，不要忘记加上IF NOT EXISTS</span></span><br><span class="line"><span class="operator"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="keyword">IF</span> <span class="keyword">NOT</span> <span class="keyword">EXISTS</span> <span class="string">"T_Person"</span> (</span><br><span class="line">    <span class="string">"id"</span> <span class="built_in">INTEGER</span> <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">    <span class="string">"name"</span> <span class="built_in">TEXT</span>,</span><br><span class="line">    <span class="string">"age"</span> <span class="built_in">INTEGER</span>,</span><br><span class="line">    <span class="string">"height"</span> <span class="built_in">REAL</span>,</span><br><span class="line">    PRIMARY <span class="keyword">KEY</span>(<span class="string">"id"</span>)</span><br><span class="line">);</span></span><br><span class="line"></span><br><span class="line"><span class="operator"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="keyword">IF</span> <span class="keyword">NOT</span> <span class="keyword">EXISTS</span> <span class="string">"T_Company"</span> (</span><br><span class="line"><span class="string">"id"</span> <span class="built_in">INTEGER</span> <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line"><span class="string">"companyName"</span> <span class="built_in">TEXT</span></span><br><span class="line">);</span></span><br></pre></td></tr></table></figure>
+<p>再新建不继承任何类的文件：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Foundation</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">let</span> dbName = <span class="string">"my.db"</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SQListManager</span> </span>&#123;</span><br><span class="line">    <span class="comment">//创建一个单例,shareManger是全局访问点</span></span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">let</span> shareManager = <span class="type">SQListManager</span>()</span><br><span class="line">    <span class="comment">//全局的数据库操作队列</span></span><br><span class="line">    <span class="keyword">let</span> queue: <span class="type">FMDatabaseQueue</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">init</span>()&#123;</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"准备工作"</span>)</span><br><span class="line">        <span class="comment">//打开数据库的路径</span></span><br><span class="line">        <span class="comment">//创建路径</span></span><br><span class="line">        <span class="keyword">var</span> path = <span class="type">NSSearchPathForDirectoriesInDomains</span>(.<span class="type">DocumentDirectory</span>, .<span class="type">UserDomainMask</span>, <span class="literal">true</span>)[<span class="number">0</span>]</span><br><span class="line">        <span class="comment">//通过拼接数据库名，得到数据库的全路径</span></span><br><span class="line">        path = (path <span class="keyword">as</span> <span class="type">NSString</span>).stringByAppendingPathComponent(dbName)</span><br><span class="line">        <span class="built_in">print</span>(path)</span><br><span class="line">        </span><br><span class="line">        <span class="comment">//将会返回数据库队列，是全局数据库的访问入口。这里，如果数据库存在将会打开数据库并建立队列，如果数据库不存在将新建数据库及队列。</span></span><br><span class="line">        queue = <span class="type">FMDatabaseQueue</span>(path: path)</span><br><span class="line">        creatTable()</span><br><span class="line">    &#125;</span><br><span class="line">        <span class="comment">//创建数据库</span></span><br><span class="line">        <span class="keyword">private</span> <span class="func"><span class="keyword">func</span> <span class="title">creatTable</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="comment">//准备SQL</span></span><br><span class="line">        <span class="keyword">let</span> path = <span class="type">NSBundle</span>.mainBundle().pathForResource(<span class="string">"DB.sql"</span>, ofType: <span class="literal">nil</span>)!</span><br><span class="line">        <span class="comment">//读取bundle中的文件夹中的string，这个方法是string的init方法中的一种初始化方法。</span></span><br><span class="line">        <span class="keyword">let</span> sql = <span class="keyword">try</span>! <span class="type">String</span>(contentsOfFile: path)</span><br><span class="line">        <span class="comment">//执行SQL</span></span><br><span class="line">        queue.inDatabase &#123; (db) -&gt; <span class="type">Void</span> <span class="keyword">in</span></span><br><span class="line">            <span class="comment">//使用多条SQL，适合一次创建多条</span></span><br><span class="line">            <span class="keyword">if</span> db.executeStatements(sql)&#123;</span><br><span class="line">                <span class="built_in">print</span>(<span class="string">"创表成功"</span>)</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="built_in">print</span>(<span class="string">"创表失败"</span>)</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//执行单挑上去SQL，一次只能执行一条，如果有多个表会很麻烦</span></span><br><span class="line"><span class="comment">//            do&#123;</span></span><br><span class="line"><span class="comment">//                try db.executeUpdate(sql)</span></span><br><span class="line"><span class="comment">//                </span></span><br><span class="line"><span class="comment">//            &#125;catch&#123;</span></span><br><span class="line"><span class="comment">//                print("创建失败\(error)")</span></span><br><span class="line"><span class="comment">//            &#125;</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"这里用来测试线程"</span>)</span><br><span class="line">    &#125;&#125;</span><br></pre></td></tr></table></figure>
+<p>先创建数据库的路径，然后通过FWDB的数据库队列进行全局访问。使用时，如果是多条SQL的话，使用executeStatements函数，单条的话使用executeUpdate，经过测试，多条使用executeUpdate的话，仅能够生成一个Table。还需要注意，在单条使用的时候，应该使用do…catch。</p>
+<p>在上述代码中，发现关于线程的一个问题：一般情况，使用闭包或者block是在异步开了一个耗时操作，等耗时操作完了，通过回调再执行别的，是一个异步回调。<br>执行应该是异步，但是上述输出的结果是：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">准备工作</span><br><span class="line">/Users/apple/Library/Developer/CoreSimulator/Devices/<span class="number">4</span>B3ABF1C-<span class="number">887</span>B-<span class="number">456E-85</span>D4-<span class="number">189</span>DA3A89B62/data/Containers/Data/Application/<span class="number">0F</span>05CC46-<span class="number">329</span>D-<span class="number">414</span>A-AD24-<span class="number">5</span>A328E3719C2/Documents/my.db</span><br><span class="line">创表成功</span><br><span class="line">这里涌来测试线程</span><br><span class="line">FMDB.SQListManager</span><br></pre></td></tr></table></figure>
+<p>也就是说结果是一个同步执行，为什么会是同步执行，其主要原因是queue是FWDB提供的一个核心类，其中封装了一个串行队列。这样能实现多线程数据操作，而且线程能保证安全。</p>
+<h4 id="u4E8C_u3001_u6570_u636E_u63D2_u5165"><a href="#u4E8C_u3001_u6570_u636E_u63D2_u5165" class="headerlink" title="二、数据插入"></a>二、数据插入</h4><ul>
+<li>传统插入方法</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="func"><span class="keyword">func</span> <span class="title">demoInsert</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">let</span> name = <span class="string">"王二"</span></span><br><span class="line">        <span class="keyword">let</span> sql = <span class="string">"INSERT INTO T_Person (name, age, height) VALUES ('<span class="subst">\(name)</span>', 18, 180);"</span></span><br><span class="line">        <span class="built_in">print</span>(sql)</span><br><span class="line">        <span class="type">SQListManager</span>.shareManager.queue.inDatabase &#123; (db) -&gt; <span class="type">Void</span> <span class="keyword">in</span></span><br><span class="line">            <span class="keyword">if</span> db.executeStatements(sql)&#123;</span><br><span class="line">                <span class="built_in">print</span>(<span class="string">"插入成功"</span>)</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="built_in">print</span>(<span class="string">"插入失败"</span>)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>这种插入方法其实是有缺陷的，修改name数值，再SQL注入，如以下代码：<br><code>let name = &quot;王五&#39;, 18, 1.8); DELETE FROM T_Person; --&quot;</code>再运行后就可以看到数据库里面的值已经被删掉了。</p>
+<p>所以这种传统的数据插入方法仅作了解，不能用于编写。</p>
+<ul>
+<li>预编译插入方法</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="func"><span class="keyword">func</span> <span class="title">demoInsert1</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">let</span> name = <span class="string">"王二"</span></span><br><span class="line">        <span class="keyword">let</span> sql = <span class="string">"INSERT INTO T_Person (name, age, height) VALUES (?, ?, ?);"</span></span><br><span class="line">        <span class="type">SQListManager</span>.shareManager.queue.inDatabase &#123; (db) -&gt; <span class="type">Void</span> <span class="keyword">in</span></span><br><span class="line">            <span class="keyword">do</span>&#123;</span><br><span class="line">                <span class="keyword">try</span> db.executeUpdate(sql, name, <span class="number">18</span>, <span class="number">190</span>)</span><br><span class="line">            &#125;<span class="keyword">catch</span>&#123;</span><br><span class="line">                <span class="built_in">print</span>(<span class="string">"插入失败"</span>)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>使用?作为参数的占位符，系统将提前编译，确认方法是否正确。在开始执行SQL的时候，使用参数代替?。<br>预编译插入相比传统插入会更安全，这可以留存用户输入的所有内容。</p>
+<ul>
+<li>使用字典插入数据</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="func"><span class="keyword">func</span> <span class="title">demoInsert2</span><span class="params">(dict: [String: AnyObject])</span></span>&#123;</span><br><span class="line">       <span class="keyword">let</span> sql = <span class="string">"INSERT INTO T_Person (name, age, height) VALUES (:name123, :age12, :height170);"</span></span><br><span class="line">       <span class="type">SQListManager</span>.shareManager.queue.inDatabase &#123; (db) -&gt; <span class="type">Void</span> <span class="keyword">in</span></span><br><span class="line">           <span class="keyword">if</span> db.executeUpdate(sql, withParameterDictionary: dict)&#123;</span><br><span class="line">               <span class="built_in">print</span>(<span class="string">"插入成功 查看最后的ID:<span class="subst">\(db.lastInsertRowId()</span>)"</span>)</span><br><span class="line">           &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">               <span class="built_in">print</span>(<span class="string">"插入失败"</span>)</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<p>这里必须说明：<br><code>INSERT INTO table_name (列1, 列2,...) VALUES (值1, 值2,....)</code>table_name是表格列的名称，后面<code>VALUES (:name123, :age12, :height170)</code>valeus中的:name123是访问字典key值的名称。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">demoInsert2([<span class="string">"name123"</span>: <span class="string">"wang"</span>, <span class="string">"age12"</span>: <span class="number">13</span>, <span class="string">"height170"</span>: <span class="number">170</span>])</span><br></pre></td></tr></table></figure>
+<p>最后执行这句，可以看到输出结果：<br><img src="http://7xplbf.com1.z0.glb.clouddn.com/%E6%95%B0%E6%8D%AE%E5%AD%97%E5%85%B8%E6%8F%92%E5%85%A5.png" alt="GitHub set up"></p>
+<h4 id="u6570_u636E_u5220_u9664"><a href="#u6570_u636E_u5220_u9664" class="headerlink" title="数据删除"></a>数据删除</h4><p>SQL DELETE 语法：<br><code>DELETE FROM 表名称 WHERE 列名称 = 值</code></p>
+<p>通过id进行删除:</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="func"><span class="keyword">func</span> <span class="title">demoDelete</span><span class="params">(id: Int)</span></span>&#123;</span><br><span class="line">        <span class="keyword">let</span> sql = <span class="string">"DELETE FROM T_Person WHERE id = :id;"</span></span><br><span class="line">        <span class="type">SQListManager</span>.shareManager.queue.inDatabase &#123; (db) -&gt; <span class="type">Void</span> <span class="keyword">in</span></span><br><span class="line">            <span class="keyword">if</span> db.executeUpdate(sql, withParameterDictionary: [<span class="string">"id"</span>: id])&#123;</span><br><span class="line">                <span class="built_in">print</span>(<span class="string">"删除成功"</span>)</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="built_in">print</span>(<span class="string">"删除失败"</span>)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>在执行：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">override</span> <span class="func"><span class="keyword">func</span> <span class="title">viewDidLoad</span><span class="params">()</span></span> &#123;</span><br><span class="line">       <span class="keyword">super</span>.viewDidLoad()</span><br><span class="line">       <span class="keyword">let</span> manager = <span class="type">SQListManager</span>.shareManager</span><br><span class="line">       <span class="built_in">print</span>(manager)</span><br><span class="line">       demoDelete(<span class="number">3</span>)</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<p>可以看到数据库当前状态，原本id3已经被删除了。<br><img src="http://7xplbf.com1.z0.glb.clouddn.com/%E6%95%B0%E6%8D%AE%E5%88%A0%E9%99%A4.png" alt="GitHub set up"></p>
+<h4 id="u66F4_u65B0_u6570_u636E_u5E93"><a href="#u66F4_u65B0_u6570_u636E_u5E93" class="headerlink" title="更新数据库"></a>更新数据库</h4><p>SQL UPDATE 语法<br><code>UPDATE 表名称 SET 列名称 = 新值 WHERE 列名称 = 某值</code></p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="func"><span class="keyword">func</span> <span class="title">demoUpdate</span><span class="params">(dict: [String: AnyObject])</span></span>&#123;</span><br><span class="line">        <span class="keyword">let</span> sql = <span class="string">"UPDATE T_Person SET name = :name, age = :age, height = :height WHERE id = :id;"</span></span><br><span class="line">        <span class="type">SQListManager</span>.shareManager.queue.inDatabase &#123; (db) -&gt; <span class="type">Void</span> <span class="keyword">in</span></span><br><span class="line">            <span class="keyword">if</span> db.executeUpdate(sql, withParameterDictionary: dict)&#123;</span><br><span class="line">                <span class="built_in">print</span>(<span class="string">"更新成功"</span>)</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="built_in">print</span>(<span class="string">"更新失败"</span>)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">demoUpdate([<span class="string">"id"</span>: <span class="number">4</span>, <span class="string">"name"</span>: <span class="string">"li"</span>, <span class="string">"age"</span>: <span class="number">40</span>, <span class="string">"height"</span>: <span class="number">210</span>])</span><br></pre></td></tr></table></figure>
+<p>结果为：<br><img src="http://7xplbf.com1.z0.glb.clouddn.com/%E6%95%B0%E6%8D%AE%E6%9B%B4%E6%96%B0.png" alt="GitHub set up"></p>
+<h4 id="u6570_u636E_u67E5_u8BE2"><a href="#u6570_u636E_u67E5_u8BE2" class="headerlink" title="数据查询"></a>数据查询</h4><p>SQL SELECT 语法<br><code>SELECT 列名称 FROM 表名称</code></p>
+<p>第一种查询方式仅是一种基本的查询方式。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="func"><span class="keyword">func</span> <span class="title">searchDemo</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">let</span> sql = <span class="string">"SELECT id, name, age, height FROM T_Person;"</span></span><br><span class="line">        <span class="type">SQListManager</span>.shareManager.queue.inDatabase &#123; (db) -&gt; <span class="type">Void</span> <span class="keyword">in</span></span><br><span class="line">            <span class="keyword">do</span>&#123;</span><br><span class="line">                <span class="comment">//获得一个结果数组，return try executeQuery(sql, values: values as [AnyObject]);</span></span><br><span class="line">                <span class="keyword">let</span> resultSet = <span class="keyword">try</span> db.executeQuery(sql)</span><br><span class="line">                <span class="comment">//Retrieve next row for result set.逐行获得结果</span></span><br><span class="line">                <span class="keyword">while</span> resultSet.next()&#123;</span><br><span class="line">                    <span class="keyword">let</span> id = resultSet.intForColumn(<span class="string">"id"</span>)</span><br><span class="line">                    <span class="keyword">let</span> name = resultSet.stringForColumn(<span class="string">"name"</span>)</span><br><span class="line">                    <span class="keyword">let</span> age = resultSet.intForColumn(<span class="string">"age"</span>)</span><br><span class="line">                    <span class="keyword">let</span> height = resultSet.doubleForColumn(<span class="string">"height"</span>)</span><br><span class="line">                    <span class="built_in">print</span>(<span class="string">"<span class="subst">\(id)</span> <span class="subst">\(name)</span> <span class="subst">\(age)</span> <span class="subst">\(height)</span>"</span>)</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">catch</span>&#123;</span><br><span class="line">                <span class="built_in">print</span>(<span class="string">"语法错误或者数据不存在"</span>)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>上面这堆代码一看就知道，和数据库中的列名绑定的太死了，如果是大量的列数就会显得很蠢了。</p>
+<p>更新后更具动态的查询方式：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="func"><span class="keyword">func</span> <span class="title">searchDemo1</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">let</span> sql = <span class="string">"SELECT id, name, age, height FROM T_Person;"</span></span><br><span class="line">        <span class="type">SQListManager</span>.shareManager.queue.inDatabase &#123; (db) -&gt; <span class="type">Void</span> <span class="keyword">in</span></span><br><span class="line">            <span class="comment">//result==nil的时候，优雅的返回</span></span><br><span class="line">            <span class="keyword">guard</span> <span class="keyword">let</span> result = <span class="keyword">try</span>? db.executeQuery(sql) <span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="built_in">print</span>(<span class="string">"语法错误或者数据不存在"</span>)</span><br><span class="line">                <span class="keyword">return</span></span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//用一个字典数组接收获得的结果数组</span></span><br><span class="line">            <span class="keyword">var</span> resultSet = [[<span class="type">String</span>: <span class="type">AnyObject</span>]]()</span><br><span class="line">            <span class="comment">//遍历</span></span><br><span class="line">            <span class="keyword">while</span> result.next()&#123;</span><br><span class="line">                <span class="comment">//How many columns in result set</span></span><br><span class="line">                <span class="keyword">let</span> colCount = result.columnCount()</span><br><span class="line">                <span class="comment">//初始化一个字典</span></span><br><span class="line">                <span class="keyword">var</span> row = [<span class="type">String</span>: <span class="type">AnyObject</span>]()</span><br><span class="line">                <span class="keyword">for</span> index <span class="keyword">in</span> <span class="number">0</span>..&lt;colCount&#123;</span><br><span class="line">                    <span class="comment">//Column index for column name获得列表名</span></span><br><span class="line">                    <span class="keyword">let</span> name = result.columnNameForIndex(index)</span><br><span class="line">                    <span class="comment">//Result set object for column.返回了列中的值</span></span><br><span class="line">                    <span class="keyword">let</span> value = result.objectForColumnIndex(index)</span><br><span class="line">                    <span class="comment">//设置字典</span></span><br><span class="line">                    row[name] = value</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="comment">//Append newElement to the Array.</span></span><br><span class="line">                resultSet.append(row)</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="built_in">print</span>(resultSet)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h4 id="u987A_u4FBF_u8FDB_u884C_u5C01_u88C5"><a href="#u987A_u4FBF_u8FDB_u884C_u5C01_u88C5" class="headerlink" title="顺便进行封装"></a>顺便进行封装</h4><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="func"><span class="keyword">func</span> <span class="title">executeSelectRecord</span><span class="params">(sql: String)</span></span> -&gt; [[<span class="type">String</span>: <span class="type">AnyObject</span>]]&#123;</span><br><span class="line">        <span class="keyword">var</span> resultSet = [[<span class="type">String</span>: <span class="type">AnyObject</span>]]()</span><br><span class="line">        <span class="keyword">self</span>.queue.inDatabase(&#123; (db) -&gt; <span class="type">Void</span> <span class="keyword">in</span></span><br><span class="line">            <span class="keyword">guard</span> <span class="keyword">let</span> result = <span class="keyword">try</span>? db.executeQuery(sql) <span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="built_in">print</span>(<span class="string">"SQL 语句错误或数据无效"</span>)</span><br><span class="line">                <span class="keyword">return</span></span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">while</span> result.next()&#123;</span><br><span class="line">                <span class="comment">//How many columns in result set</span></span><br><span class="line">                <span class="keyword">let</span> colCount = result.columnCount()</span><br><span class="line">                <span class="keyword">var</span> row = [<span class="type">String</span>: <span class="type">AnyObject</span>]()</span><br><span class="line">                <span class="keyword">for</span> index <span class="keyword">in</span> <span class="number">0</span>..&lt;colCount&#123;</span><br><span class="line">                    <span class="comment">//Column index for column name</span></span><br><span class="line">                    <span class="keyword">let</span> name = result.columnNameForIndex(index)</span><br><span class="line">                    <span class="comment">//Result set object for column.</span></span><br><span class="line">                    <span class="keyword">let</span> value = result.objectForColumnIndex(index)</span><br><span class="line">                    row[name] = value</span><br><span class="line">                &#125;</span><br><span class="line">                resultSet.append(row)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">        <span class="keyword">return</span> resultSet</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>调用：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">override</span> <span class="func"><span class="keyword">func</span> <span class="title">viewDidLoad</span><span class="params">()</span></span> &#123;</span><br><span class="line">       <span class="keyword">super</span>.viewDidLoad()</span><br><span class="line">       <span class="keyword">let</span> manager = <span class="type">SQListManager</span>.shareManager</span><br><span class="line">       <span class="keyword">let</span> sql = <span class="string">"SELECT id, name, age, height FROM T_Person;"</span></span><br><span class="line">       <span class="built_in">print</span>(manager.executeSelectRecord(sql))</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+</span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/SQL/" rel="tag">#SQL</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/01/08/swift-AFNetWorking/" rel="next" title="swift-AFNetWorking请求数据的自定义及封装">
+                <i class="fa fa-chevron-left"></i> swift-AFNetWorking请求数据的自定义及封装
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+        </div>
+
+        
+
+
+        
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+      </div>
+
+      
+        
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="/uploads/avatar.jpg" alt="“任志成”" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">“任志成”</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description"></p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">9</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">3</span>
+              <span class="site-state-item-name">分类</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">11</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator">
+            <i class="fa fa-angle-double-up"></i>
+          </div>
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#u4E00_u3001_u51C6_u5907_u9636_u6BB5"><span class="nav-number">1.</span> <span class="nav-text">一、准备阶段</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u4E8C_u3001DEMO1"><span class="nav-number">2.</span> <span class="nav-text">二、DEMO1</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u4E8C_u3001_u6570_u636E_u63D2_u5165"><span class="nav-number">3.</span> <span class="nav-text">二、数据插入</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u6570_u636E_u5220_u9664"><span class="nav-number">4.</span> <span class="nav-text">数据删除</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u66F4_u65B0_u6570_u636E_u5E93"><span class="nav-number">5.</span> <span class="nav-text">更新数据库</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u6570_u636E_u67E5_u8BE2"><span class="nav-number">6.</span> <span class="nav-text">数据查询</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u987A_u4FBF_u8FDB_u884C_u5C01_u88C5"><span class="nav-number">7.</span> <span class="nav-text">顺便进行封装</span></a></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator">
+            <i class="fa fa-angle-double-down"></i>
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+      
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">“任志成”</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+
+  
+    
+    
+
+  
+
+
+  
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
+
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.2" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 1 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    motionMiddleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          displaySidebar();
+        }
+      }
+    };
+  });
+</script>
+
+
+
+  <script type="text/javascript" src="/js/bootstrap.js"></script>
+
+  
+  
+
+  
+  
+
+</body>
+</html>
