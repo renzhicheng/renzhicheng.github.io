@@ -551,7 +551,8 @@
 
       
         
-          <p>重载，简单说，就是函数或者方法有同样的名称，但是参数列表不同的情形。重载的方法只属于子类，且函数名必须相同，返回值可以相同，也可以不同，但是特征标必须不同。</p>
+          <p><img src="http://7xplbf.com1.z0.glb.clouddn.com/%E5%8D%9A%E5%AE%A2%E6%A0%87%E9%A2%98%E5%9B%BE%E7%89%874.png" alt="GitHub set up"></p>
+<p>重载，简单说，就是函数或者方法有同样的名称，但是参数列表不同的情形。重载的方法只属于子类，且函数名必须相同，返回值可以相同，也可以不同，但是特征标必须不同。</p>
 <h4 id="1_u3001_u7236_u7C7B"><a href="#1_u3001_u7236_u7C7B" class="headerlink" title="1、父类"></a>1、父类</h4><p>新建一个父类Person.swift<br>1、添加两个属性</p>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span>: <span class="title">NSObject</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> name: <span class="type">String</span></span><br><span class="line">    <span class="keyword">var</span> age: <span class="type">Int</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>提示错误 <code>Class &#39;Person&#39; has no initializers</code><br>原因：定义构造器（initializers）实现这个实例化的过程是，swift要确保所有的属性的设置都是合理的值，存储属性不能是不确定的状体，所以应该给属性设置一个初始值。就像在OC中int型的属性没有赋值，输出的时候是0一样。</p>
@@ -650,7 +651,7 @@
 
       
         
-          <p><img src="http://7xplbf.com1.z0.glb.clouddn.com/%E5%8D%9A%E5%AE%A2%E6%A0%87%E9%A2%98%E5%9B%BE%E7%89%874.jpg" alt="GitHub set up"></p>
+          <p><img src="http://7xplbf.com1.z0.glb.clouddn.com/%E5%8D%9A%E5%AE%A2%E6%A0%87%E9%A2%98%E5%9B%BE%E7%89%874.png" alt="GitHub set up"></p>
 <p>关于闭包的定义：</p>
 <p>闭包是功能性包自包含模块，可以再代码中传递和使用。类似C和OC中的block，闭包可以捕获和存储其所在上下文中任意常量和变量的引用。</p>
 <blockquote>
