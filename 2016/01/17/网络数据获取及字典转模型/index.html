@@ -1,0 +1,678 @@
+<!doctype html>
+<html class="theme-next   use-motion ">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="数据请求," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
+
+
+
+
+
+
+<meta name="description" content="本文关键字摘要：网络请求,字典转模型，精简controller，Swift
+之前封装了一个网络请求的工具类，于是这篇文章，我打算简单的写一下如何使用及字典转模型要注意的细节，同时简单的涉及一点点MVVM，想要了解更多的MVVM可以去看看一些大牛写博客。
+在Controller下完成数据请求使用的是我自己封装的AFNetWorking的请求工具类。https://github.com/renzhic">
+<meta property="og:type" content="article">
+<meta property="og:title" content="网络数据获取及字典转模型">
+<meta property="og:url" content="http://yoursite.com/2016/01/17/网络数据获取及字典转模型/index.html">
+<meta property="og:site_name" content="一只橙子">
+<meta property="og:description" content="本文关键字摘要：网络请求,字典转模型，精简controller，Swift
+之前封装了一个网络请求的工具类，于是这篇文章，我打算简单的写一下如何使用及字典转模型要注意的细节，同时简单的涉及一点点MVVM，想要了解更多的MVVM可以去看看一些大牛写博客。
+在Controller下完成数据请求使用的是我自己封装的AFNetWorking的请求工具类。https://github.com/renzhic">
+<meta property="og:updated_time" content="2016-01-16T17:48:30.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="网络数据获取及字典转模型">
+<meta name="twitter:description" content="本文关键字摘要：网络请求,字典转模型，精简controller，Swift
+之前封装了一个网络请求的工具类，于是这篇文章，我打算简单的写一下如何使用及字典转模型要注意的细节，同时简单的涉及一点点MVVM，想要了解更多的MVVM可以去看看一些大牛写博客。
+在Controller下完成数据请求使用的是我自己封装的AFNetWorking的请求工具类。https://github.com/renzhic">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: 'post',
+    motion: true
+  };
+</script>
+
+  <title> 网络数据获取及字典转模型 | 一只橙子 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?522d83ba5b43c66bcc66c5e6c273682e";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">一只橙子</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content">
+          
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                网络数据获取及字典转模型
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2016-01-17T01:48:30+08:00" content="2016-01-17">
+              2016-01-17
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/iOS探究之路/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS探究之路</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><p>本文关键字摘要：<strong>网络请求,字典转模型，精简controller，Swift</strong></p>
+<p>之前封装了一个网络请求的工具类，于是这篇文章，我打算简单的写一下如何使用及字典转模型要注意的细节，同时简单的涉及一点点MVVM，想要了解更多的MVVM可以去看看一些大牛写博客。</p>
+<h4 id="u5728Controller_u4E0B_u5B8C_u6210_u6570_u636E_u8BF7_u6C42"><a href="#u5728Controller_u4E0B_u5B8C_u6210_u6570_u636E_u8BF7_u6C42" class="headerlink" title="在Controller下完成数据请求"></a>在Controller下完成数据请求</h4><p>使用的是我自己封装的AFNetWorking的请求工具类。<br><a href="https://github.com/renzhicheng/iOS" target="_blank" rel="external">https://github.com/renzhicheng/iOS</a><br>封装思路：<br><a href="http://www.renzcblog.com/2016/01/08/swift-AFNetWorking/" target="_blank" rel="external">http://www.renzcblog.com/2016/01/08/swift-AFNetWorking/</a></p>
+<p>代码思路先是走直线；用的tableviewController进行测试，json放在了本地的网络中，直接放代码：</p>
+<p>controller中代码：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TestTableViewController</span>: <span class="title">UITableViewController</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">var</span> weatherModel: [<span class="type">Model</span>] = [<span class="type">Model</span>]()</span><br><span class="line"></span><br><span class="line">        <span class="keyword">override</span> <span class="func"><span class="keyword">func</span> <span class="title">viewDidLoad</span><span class="params">()</span></span> &#123;</span><br><span class="line">            <span class="keyword">super</span>.viewDidLoad()</span><br><span class="line">            tableView.registerClass(<span class="type">UITableViewCell</span>.<span class="keyword">self</span>, forCellReuseIdentifier: <span class="string">"reuseIdentifier"</span>)</span><br><span class="line">            <span class="comment">//数据加载</span></span><br><span class="line">            loadData()</span><br><span class="line">        &#125;</span><br><span class="line">    </span><br><span class="line">        <span class="comment">// MARK: - Table view data source</span></span><br><span class="line">    </span><br><span class="line">        <span class="keyword">override</span> <span class="func"><span class="keyword">func</span> <span class="title">tableView</span><span class="params">(tableView: UITableView, numberOfRowsInSection section: Int)</span></span> -&gt; <span class="type">Int</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> weatherModel.<span class="built_in">count</span></span><br><span class="line">        &#125;</span><br><span class="line">    </span><br><span class="line">        <span class="keyword">override</span> <span class="func"><span class="keyword">func</span> <span class="title">tableView</span><span class="params">(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath)</span></span> -&gt; <span class="type">UITableViewCell</span> &#123;</span><br><span class="line">            <span class="keyword">let</span> cell = tableView.dequeueReusableCellWithIdentifier(<span class="string">"reuseIdentifier"</span>, forIndexPath: indexPath)</span><br><span class="line">            <span class="comment">//给cell的text赋值</span></span><br><span class="line">            cell.textLabel?.text = weatherModel[indexPath.row].name</span><br><span class="line">            <span class="keyword">return</span> cell</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="func"><span class="keyword">func</span> <span class="title">loadData</span><span class="params">()</span></span>&#123;</span><br><span class="line">            <span class="type">NetWorkingTool</span>.shareTools.request(<span class="type">RequestMethod</span>.<span class="type">GET</span>, urlString: <span class="string">"http://127.0.0.1/resources/vedios.json"</span>, parameters: <span class="literal">nil</span>) &#123; (response, error) -&gt; () <span class="keyword">in</span></span><br><span class="line">                <span class="keyword">if</span> error != <span class="literal">nil</span>&#123;</span><br><span class="line">                    <span class="built_in">print</span>(error)</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="comment">//优雅的返回nil或者定义属性并强转。</span></span><br><span class="line">                <span class="keyword">guard</span> <span class="keyword">let</span> responseArray = response <span class="keyword">as</span>? [[<span class="type">String</span>: <span class="type">AnyObject</span>]] <span class="keyword">else</span>&#123;</span><br><span class="line">                    <span class="built_in">print</span>(<span class="string">"数据不是数组"</span>)</span><br><span class="line">                    <span class="keyword">return</span></span><br><span class="line">                &#125;</span><br><span class="line">                <span class="comment">//字典转模型</span></span><br><span class="line">                <span class="keyword">for</span> dict <span class="keyword">in</span> responseArray&#123;</span><br><span class="line">                    <span class="keyword">let</span> model = <span class="type">Model</span>(dict: dict)</span><br><span class="line">                    <span class="keyword">self</span>.weatherModel.append(model)</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="comment">//重新加载数据</span></span><br><span class="line">                <span class="keyword">self</span>.tableView.reloadData()</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>Model中的代码：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Model</span>: <span class="title">NSObject</span> </span>&#123;</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">var</span> name: <span class="type">String</span>?</span><br><span class="line">    <span class="keyword">var</span> length: <span class="type">String</span>?</span><br><span class="line">    <span class="keyword">var</span> url: <span class="type">String</span>?</span><br><span class="line">    <span class="keyword">var</span> image: <span class="type">String</span>?</span><br><span class="line">    <span class="keyword">var</span> <span class="type">ID</span>: <span class="type">String</span>?</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">init</span>(dict: [<span class="type">String</span>: <span class="type">AnyObject</span>]) &#123;</span><br><span class="line">        <span class="keyword">super</span>.<span class="keyword">init</span>()</span><br><span class="line">        setValuesForKeysWithDictionary(dict)</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">override</span> <span class="func"><span class="keyword">func</span> <span class="title">setValue</span><span class="params">(value: AnyObject?, forUndefinedKey key: String)</span></span> &#123;&#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>先放出json的格式：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">  &#123;</span><br><span class="line">    "<span class="attribute">length</span>" : <span class="value"><span class="string">"12"</span></span>,</span><br><span class="line">    "<span class="attribute">url</span>" : <span class="value"><span class="string">"http:\/\/127.0.0.1\/resources\/videos\/minion_01.mp4"</span></span>,</span><br><span class="line">    "<span class="attribute">image</span>" : <span class="value"><span class="string">"http:\/\/127.0.0.1\/resources\/images\/minion_01.png"</span></span>,</span><br><span class="line">    "<span class="attribute">ID</span>" : <span class="value"><span class="string">"01"</span></span>,</span><br><span class="line">    "<span class="attribute">name</span>" : <span class="value"><span class="string">"å°é»„äºº ç¬¬01éƒ¨"</span></span><br><span class="line">  </span>&#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    "<span class="attribute">length</span>" : <span class="value"><span class="string">"14"</span></span>,</span><br><span class="line">    "<span class="attribute">url</span>" : <span class="value"><span class="string">"http:\/\/127.0.0.1\/resources\/videos\/minion_02.mp4"</span></span>,</span><br><span class="line">    "<span class="attribute">image</span>" : <span class="value"><span class="string">"http:\/\/127.0.0.1\/resources\/images\/minion_02.png"</span></span>,</span><br><span class="line">    "<span class="attribute">ID</span>" : <span class="value"><span class="string">"02"</span></span>,</span><br><span class="line">    "<span class="attribute">name</span>" : <span class="value"><span class="string">"å°é»„äºº ç¬¬02éƒ¨"</span></span><br><span class="line">  </span>&#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<p>字典转模型有一处细节要注意：<br>该json字典放在了数组中，所以代码是这样描述的<code>let responseArray = response as? [[String: AnyObject]]</code></p>
+<p>如果json格式是：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  "<span class="attribute">weatherinfo</span>": <span class="value">&#123;</span><br><span class="line">    "<span class="attribute">city</span>": <span class="value"><span class="string">"北京"</span></span>,</span><br><span class="line">    "<span class="attribute">cityid</span>": <span class="value"><span class="string">"101010100"</span></span>,</span><br><span class="line">    "<span class="attribute">temp</span>": <span class="value"><span class="string">"9"</span></span>,</span><br><span class="line">    "<span class="attribute">WD</span>": <span class="value"><span class="string">"西南风"</span></span>,</span><br><span class="line">    "<span class="attribute">WS</span>": <span class="value"><span class="string">"2级"</span></span>,</span><br><span class="line">    "<span class="attribute">SD</span>": <span class="value"><span class="string">"24%"</span></span>,</span><br><span class="line">    "<span class="attribute">WSE</span>": <span class="value"><span class="string">"2"</span></span>,</span><br><span class="line">    "<span class="attribute">time</span>": <span class="value"><span class="string">"10:30"</span></span>,</span><br><span class="line">    "<span class="attribute">isRadar</span>": <span class="value"><span class="string">"1"</span></span>,</span><br><span class="line">    "<span class="attribute">Radar</span>": <span class="value"><span class="string">"JC_RADAR_AZ9010_JB"</span></span>,</span><br><span class="line">    "<span class="attribute">njd</span>": <span class="value"><span class="string">"暂无实况"</span></span>,</span><br><span class="line">    "<span class="attribute">qy</span>": <span class="value"><span class="string">"1015"</span></span><br><span class="line">  </span>&#125;</span><br><span class="line"></span>&#125;</span><br></pre></td></tr></table></figure>
+<p>那么字典转模型的代码该这样描述：<code>let dict = response as? [String : AnyObject]</code><br>这里写的详细一点，希望能帮助到需要的人。</p>
+<p>上述的控制器代码其实很简单，但是有一处细节很重要，就是<code>self.tableView.reloadData()</code>重新加载数据这句代码不能少，如果没有这一句我们会发现，根本不能通过模型显示导数据，这并非模型中没有数据。而是因为获取数据是一个异步请求，因此系统的执行顺序是，先完成tableview界面的生成，然后再完成数据的请求，在界面生成的时候模型中便都是nil。</p>
+<p>还有就是为什么没有用到json解析，这个是因为AFNetWorking中已经封装好了，可以去框架中查看。</p>
+<h4 id="u51CF_u8F7BController"><a href="#u51CF_u8F7BController" class="headerlink" title="减轻Controller"></a>减轻Controller</h4><p>都知道要减轻controller的负重，那么网络请求这类的业务逻辑就不要写在controller中，于是在MVVM中，会放在ViewModel中，而，在MVC中，我一般会新建一个文件夹用来处理。</p>
+<p>那么我们要摘取controller中请求数据的代码，就必须想到这是数据的请求，就必然要采用到闭包，于是有了下面的代码：</p>
+<p>controller中代码：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">HazeTestTableViewController</span>: <span class="title">UITableViewController</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">var</span> weatherModel: [<span class="type">Model</span>] = [<span class="type">Model</span>]()</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">override</span> <span class="func"><span class="keyword">func</span> <span class="title">viewDidLoad</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="keyword">super</span>.viewDidLoad()</span><br><span class="line">        tableView.registerClass(<span class="type">UITableViewCell</span>.<span class="keyword">self</span>, forCellReuseIdentifier: <span class="string">"reuseIdentifier"</span>)</span><br><span class="line">		<span class="comment">//loadData(),调用闭包值，我的理解就是用个指针指着闭包的位置取值。</span></span><br><span class="line">        <span class="type">HazeHttp</span>.share.loadData &#123; (isSuccess) -&gt; () <span class="keyword">in</span></span><br><span class="line">        	<span class="comment">//通过判断是否成功来进行数据重新加载</span></span><br><span class="line">            <span class="keyword">if</span> isSuccess == <span class="literal">true</span>&#123;</span><br><span class="line">                <span class="keyword">self</span>.tableView.reloadData()</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="built_in">print</span>(<span class="string">"请求失败"</span>)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// MARK: - Table view data source</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">override</span> <span class="func"><span class="keyword">func</span> <span class="title">tableView</span><span class="params">(tableView: UITableView, numberOfRowsInSection section: Int)</span></span> -&gt; <span class="type">Int</span> &#123;</span><br><span class="line">        <span class="comment">// #warning Incomplete implementation, return the number of rows</span></span><br><span class="line"><span class="comment">//        return weatherModel.count</span></span><br><span class="line">        <span class="keyword">return</span> <span class="type">Http</span>.share.weatherModel.<span class="built_in">count</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">override</span> <span class="func"><span class="keyword">func</span> <span class="title">tableView</span><span class="params">(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath)</span></span> -&gt; <span class="type">UITableViewCell</span> &#123;</span><br><span class="line">        <span class="keyword">let</span> cell = tableView.dequeueReusableCellWithIdentifier(<span class="string">"reuseIdentifier"</span>, forIndexPath: indexPath)</span><br><span class="line">        cell.backgroundColor = <span class="type">UIColor</span>.cyanColor()</span><br><span class="line">        cell.textLabel?.text = <span class="type">Http</span>.share.weatherModel[indexPath.row].name</span><br><span class="line">        <span class="keyword">return</span> cell</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="func"><span class="keyword">func</span> <span class="title">loadData</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="type">NetWorkingTool</span>.shareTools.request(<span class="type">RequestMethod</span>.<span class="type">GET</span>, urlString: <span class="string">"http://127.0.0.1/resources/vedios.json"</span>, parameters: <span class="literal">nil</span>) &#123; (response, error) -&gt; () <span class="keyword">in</span></span><br><span class="line">            <span class="keyword">if</span> error != <span class="literal">nil</span>&#123;</span><br><span class="line">                <span class="built_in">print</span>(error)</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">guard</span> <span class="keyword">let</span> responseArray = response <span class="keyword">as</span>? [[<span class="type">String</span>: <span class="type">AnyObject</span>]] <span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="built_in">print</span>(<span class="string">"数据不是数组"</span>)</span><br><span class="line">                <span class="keyword">return</span></span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">for</span> dict <span class="keyword">in</span> responseArray&#123;</span><br><span class="line">                <span class="keyword">let</span> model = <span class="type">Model</span>(dict: dict)</span><br><span class="line">                <span class="keyword">self</span>.weatherModel.append(model)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>整理思路并不复杂，reloadData只能留在控制器，那么需要一个通知来告知是否需要调用，因此通过闭包来实现。model通过另一个访问网络的类来调用，中间多了一层。<code>cell.textLabel?.text = Http.share.weatherModel[indexPath.row].name</code></p>
+<h4 id="HttpService_u4E2D_u4EE3_u7801_uFF1A"><a href="#HttpService_u4E2D_u4EE3_u7801_uFF1A" class="headerlink" title="HttpService中代码："></a>HttpService中代码：</h4><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">HazeWeatherHttpService</span>: <span class="title">NSObject</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">let</span> shareModel: <span class="type">HazeWeatherHttpService</span> = <span class="type">HazeWeatherHttpService</span>()</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">var</span> weatherModel: [<span class="type">HazeWeatherModel</span>] = [<span class="type">HazeWeatherModel</span>]()</span><br><span class="line">    </span><br><span class="line">    <span class="func"><span class="keyword">func</span> <span class="title">loadWeatherData</span><span class="params">()</span></span>&#123;</span><br><span class="line">        </span><br><span class="line">        <span class="type">NetWorkingTool</span>.shareTools.request(<span class="type">RequestMethod</span>.<span class="type">GET</span>, urlString: <span class="string">"http://127.0.0.1/resources/vedios.json"</span>, parameters: <span class="literal">nil</span>) &#123; (response, error) -&gt; () <span class="keyword">in</span></span><br><span class="line">            <span class="keyword">if</span> error != <span class="literal">nil</span>&#123;</span><br><span class="line">                <span class="built_in">print</span>(error)</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">guard</span> <span class="keyword">let</span> responseArray = response <span class="keyword">as</span>? [[<span class="type">String</span>: <span class="type">AnyObject</span>]] <span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="built_in">print</span>(<span class="string">"数据不是数组"</span>)</span><br><span class="line">                <span class="keyword">return</span></span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">for</span> dict <span class="keyword">in</span> responseArray&#123;</span><br><span class="line">                <span class="keyword">let</span> model = <span class="type">HazeWeatherModel</span>(dict: dict)</span><br><span class="line">                <span class="keyword">self</span>.weatherModel.append(model)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>单例模式，得到唯一访问的接口shareModel。其他内容就是复制粘贴，没什么好说的了。</p>
+<p>至此，获取网络数据并字典转模型就完成，希望能有帮助到正好需要的人。</p>
+</span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/数据请求/" rel="tag">#数据请求</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/01/13/第三方框架FMDB使用详解/" rel="next" title="第三方框架FMDB使用详解">
+                <i class="fa fa-chevron-left"></i> 第三方框架FMDB使用详解
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+        </div>
+
+        
+
+
+        
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+      </div>
+
+      
+        
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="/uploads/avatar.jpg" alt="“任志成”" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">“任志成”</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description"></p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">10</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">3</span>
+              <span class="site-state-item-name">分类</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">12</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator">
+            <i class="fa fa-angle-double-up"></i>
+          </div>
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#u5728Controller_u4E0B_u5B8C_u6210_u6570_u636E_u8BF7_u6C42"><span class="nav-number">1.</span> <span class="nav-text">在Controller下完成数据请求</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u51CF_u8F7BController"><span class="nav-number">2.</span> <span class="nav-text">减轻Controller</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HttpService_u4E2D_u4EE3_u7801_uFF1A"><span class="nav-number">3.</span> <span class="nav-text">HttpService中代码：</span></a></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator">
+            <i class="fa fa-angle-double-down"></i>
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+      
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">“任志成”</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+
+  
+    
+    
+
+  
+
+
+  
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
+
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.2" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 1 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    motionMiddleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          displaySidebar();
+        }
+      }
+    };
+  });
+</script>
+
+
+
+  <script type="text/javascript" src="/js/bootstrap.js"></script>
+
+  
+  
+
+  
+  
+
+</body>
+</html>
