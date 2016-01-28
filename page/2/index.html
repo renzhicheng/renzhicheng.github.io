@@ -224,6 +224,127 @@
             
               
                 
+                <a class="post-title-link" href="/2015/11/28/基本动画“/" itemprop="url">
+                  iOS基本动画
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2015-11-28T20:14:11+08:00" content="2015-11-28">
+              2015-11-28
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/iOS凿壁偷光/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS凿壁偷光</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h3 id="u57FA_u672C_u52A8_u753B_CABasicAnimation"><a href="#u57FA_u672C_u52A8_u753B_CABasicAnimation" class="headerlink" title="基本动画 CABasicAnimation"></a>基本动画 CABasicAnimation</h3><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)touchesBegan:(<span class="built_in">NSSet</span>&lt;<span class="built_in">UITouch</span> *&gt; *)touches withEvent:(<span class="built_in">UIEvent</span> *)event&#123;</span><br><span class="line">    <span class="built_in">CABasicAnimation</span> *anim = [[<span class="built_in">CABasicAnimation</span> alloc]init];</span><br><span class="line">    anim<span class="variable">.keyPath</span> = <span class="string">@"position.x"</span>;</span><br><span class="line">    anim<span class="variable">.byValue</span> = @<span class="number">10</span>;</span><br><span class="line">    anim<span class="variable">.fillMode</span> = k<span class="built_in">CAFillModeForwards</span>;</span><br><span class="line">    anim<span class="variable">.removedOnCompletion</span> = <span class="literal">NO</span>;</span><br><span class="line">    [<span class="keyword">self</span><span class="variable">.layer</span> addAnimation:anim forKey:<span class="literal">nil</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>KVC</p>
+<blockquote>
+<p>keyPath实际上使用的是KVC的设计模式，keyPath本身的值是属性.后面的属性。</p>
+</blockquote>
+<p>CABasicAnimation 属性</p>
+<ul>
+<li>fromValue</li>
+</ul>
+<blockquote>
+<p>fromValue is non-nil. Interpolates between fromValue and the current presentation value of the property.<br/><br>指的是动画会从当前位置跳转到fromValue设值的位置再跳回来。</p>
+</blockquote>
+<ul>
+<li>toValue</li>
+</ul>
+<blockquote>
+<p>toValue is non-nil. Interpolates between the current value of keyPath in the target layer’s presentation layer and toValue.<br/><br>指的是动画会直接跳转到指定的位置。</p>
+</blockquote>
+<ul>
+<li>byValue</li>
+</ul>
+<blockquote>
+<p>byValue is non-nil. Interpolates between the current value of keyPath in the target layer’s presentation layer and that value plus byValue.<br/><br>指的是动画会从当前位置跳到当前位置叠加值后的位置。</p>
+</blockquote>
+</blockquote>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/11/28/基本动画“/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2015/11/12/iOS手势/" itemprop="url">
                   iOS手势
                 </a>
@@ -357,21 +478,21 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">11</span>
+              <span class="site-state-item-count">12</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
           <div class="site-state-item site-state-categories">
             <a href="/categories">
-              <span class="site-state-item-count">4</span>
+              <span class="site-state-item-count">5</span>
               <span class="site-state-item-name">分类</span>
               </a>
           </div>
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">13</span>
+              <span class="site-state-item-count">14</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>

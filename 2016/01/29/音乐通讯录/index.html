@@ -35,7 +35,7 @@
 <link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="GitHub," />
 
 
 
@@ -51,15 +51,26 @@
 
 
 
-<meta name="description">
-<meta property="og:type" content="website">
-<meta property="og:title" content="一只走江湖的橙子">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta name="description" content="本来就是想写个通讯录，后来准备想写啥就写啥好了。（整篇未完）
+注意点：取值在TableView中section的使用：先看NSFetchedResultsController中初始化方法及它的属性sectionNameKeyPath在文档中怎么说的。
+
+-(instancetype)initWithFetchRequest:(NSFetchRequest )fetchRequest managed">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CoreData小店">
+<meta property="og:url" content="http://yoursite.com/2016/01/29/音乐通讯录/index.html">
 <meta property="og:site_name" content="一只走江湖的橙子">
-<meta property="og:description">
+<meta property="og:description" content="本来就是想写个通讯录，后来准备想写啥就写啥好了。（整篇未完）
+注意点：取值在TableView中section的使用：先看NSFetchedResultsController中初始化方法及它的属性sectionNameKeyPath在文档中怎么说的。
+
+-(instancetype)initWithFetchRequest:(NSFetchRequest )fetchRequest managed">
+<meta property="og:image" content="http://7xplbf.com1.z0.glb.clouddn.com/CoreData3.1.gif">
+<meta property="og:updated_time" content="2016-01-28T17:48:42.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="一只走江湖的橙子">
-<meta name="twitter:description">
+<meta name="twitter:title" content="CoreData小店">
+<meta name="twitter:description" content="本来就是想写个通讯录，后来准备想写啥就写啥好了。（整篇未完）
+注意点：取值在TableView中section的使用：先看NSFetchedResultsController中初始化方法及它的属性sectionNameKeyPath在文档中怎么说的。
+
+-(instancetype)initWithFetchRequest:(NSFetchRequest )fetchRequest managed">
 
 
 
@@ -74,7 +85,7 @@
 
             
 
-  <title> 一只走江湖的橙子 </title>
+  <title> CoreData小店 | 一只走江湖的橙子 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -105,9 +116,7 @@
 
 
 
-  <div class="container one-column 
-   page-home 
-">
+  <div class="container one-column page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -195,24 +204,9 @@
       <div class="main-inner">
         <div id="content" class="content">
           
-  <section id="posts" class="posts-expand">
 
+  <div id="posts" class="posts-expand">
     
-
-    
-    
-      
-      
-        
-        
-        
-      
-
-      
-    
-
-    
-      
 
   
   
@@ -232,10 +226,7 @@
             
             
               
-                
-                <a class="post-title-link" href="/2016/01/29/音乐通讯录/" itemprop="url">
-                  CoreData小店
-                </a>
+                CoreData小店
               
             
           </h1>
@@ -283,10 +274,7 @@
       
 
       
-        
-          <span itemprop="articleBody">
-            
-              <p>本来就是想写个通讯录，后来准备想写啥就写啥好了。（整篇未完）</p>
+        <span itemprop="articleBody"><p>本来就是想写个通讯录，后来准备想写啥就写啥好了。（整篇未完）</p>
 <h4 id="u6CE8_u610F_u70B9_uFF1A_u53D6_u503C"><a href="#u6CE8_u610F_u70B9_uFF1A_u53D6_u503C" class="headerlink" title="注意点：取值"></a>注意点：取值</h4><p>在TableView中section的使用：<br>先看NSFetchedResultsController中初始化方法及它的属性sectionNameKeyPath在文档中怎么说的。</p>
 <blockquote>
 <p>-(instancetype)initWithFetchRequest:(NSFetchRequest <em>)fetchRequest managedObjectContext:(NSManagedObjectContext </em>)context sectionNameKeyPath:(NSString <em>)sectionNameKeyPath cacheName:(NSString </em>)name</p>
@@ -314,35 +302,46 @@
 <h4 id="u6CE8_u610F_u70B9_uFF1A_u5220_u9664_u6570_u636E"><a href="#u6CE8_u610F_u70B9_uFF1A_u5220_u9664_u6570_u636E" class="headerlink" title="注意点：删除数据"></a>注意点：删除数据</h4><p>需要通过遍历数据库来删除数据：</p>
 <figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//删除数据</span></span><br><span class="line">- (<span class="keyword">void</span>)deleteSongsWithName:(<span class="built_in">NSString</span> *)songName &#123;</span><br><span class="line">    <span class="built_in">NSFetchRequest</span> *fetchRequest = [<span class="built_in">NSFetchRequest</span> fetchRequestWithEntityName:<span class="string">@"Person"</span>];</span><br><span class="line">    <span class="built_in">NSPredicate</span> *pred = [<span class="built_in">NSPredicate</span> predicateWithFormat:<span class="string">@"songName=%@"</span>,songName];</span><br><span class="line">    fetchRequest<span class="variable">.predicate</span> = pred;</span><br><span class="line">    <span class="built_in">NSArray</span> *tempArray = [<span class="keyword">self</span><span class="variable">.managedObjectContext</span> executeFetchRequest:fetchRequest error:<span class="literal">nil</span>];</span><br><span class="line">    <span class="comment">//遍历数组，找到数据删除。</span></span><br><span class="line">    <span class="keyword">for</span> (Person *array <span class="keyword">in</span> tempArray) &#123;</span><br><span class="line">        [<span class="keyword">self</span><span class="variable">.managedObjectContext</span> deleteObject:array];</span><br><span class="line">    &#125;</span><br><span class="line">    [<span class="keyword">self</span><span class="variable">.appDelegate</span> saveContext];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>最终效果如下：<br><img src="http://7xplbf.com1.z0.glb.clouddn.com/CoreData3.1.gif" alt="GitHub set up"></p>
-
-            
-          </span>
-        
+</span>
       
     </div>
 
     <footer class="post-footer">
       
-
+        <div class="post-tags">
+          
+            <a href="/tags/GitHub/" rel="tag">#GitHub</a>
+          
+        </div>
       
 
       
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/01/27/CoreData-详细介绍（一）/" rel="next" title="CoreData 学习途中（一）">
+                <i class="fa fa-chevron-left"></i> CoreData 学习途中（一）
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
       
-        <div class="post-eof"></div>
+
+      
       
     </footer>
   </article>
 
 
-    
 
-  </section>
-
-  
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
-  </nav>
-
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
         </div>
@@ -351,6 +350,10 @@
 
 
         
+  <div class="comments" id="comments">
+    
+  </div>
+
 
       </div>
 
@@ -371,8 +374,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" src="/uploads/avatar.jpg" alt="“任志成”" itemprop="image"/>
           <p class="site-author-name" itemprop="name">“任志成”</p>
@@ -417,6 +429,23 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator">
+            <i class="fa fa-angle-double-up"></i>
+          </div>
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#u6CE8_u610F_u70B9_uFF1A_u53D6_u503C"><span class="nav-number">1.</span> <span class="nav-text">注意点：取值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u6CE8_u610F_u70B9_uFF1A_u63A7_u5236_u5668_u95F4_u8DF3_u8F6C"><span class="nav-number">2.</span> <span class="nav-text">注意点：控制器间跳转</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u6CE8_u610F_u70B9_uFF1A_u6539_u503C"><span class="nav-number">3.</span> <span class="nav-text">注意点：改值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u6CE8_u610F_u70B9_uFF1A_u5220_u9664_u6570_u636E"><span class="nav-number">4.</span> <span class="nav-text">注意点：删除数据</span></a></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator">
+            <i class="fa fa-angle-double-down"></i>
+          </div>
+        </section>
       
 
     </div>
@@ -500,6 +529,167 @@
   <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.2" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 1 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    motionMiddleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          displaySidebar();
+        }
+      }
+    };
+  });
+</script>
+
+
 
   <script type="text/javascript" src="/js/bootstrap.js"></script>
 
