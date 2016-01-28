@@ -64,7 +64,7 @@
 
 -(instancetype)initWithFetchRequest:(NSFetchRequest )fetchRequest managed">
 <meta property="og:image" content="http://7xplbf.com1.z0.glb.clouddn.com/CoreData3.1.gif">
-<meta property="og:updated_time" content="2016-01-28T17:48:42.000Z">
+<meta property="og:updated_time" content="2016-01-28T17:50:15.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CoreData小店">
 <meta name="twitter:description" content="本来就是想写个通讯录，后来准备想写啥就写啥好了。（整篇未完）
@@ -284,6 +284,7 @@
 </blockquote>
 </blockquote>
 <p>所以在代码中，需要添加key值，singer就是我的key值，CoreData会根据key值对应取出value，非常方便。</p>
+<a id="more"></a>
 <figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">_fetchedResultsController = [[<span class="built_in">NSFetchedResultsController</span> alloc]</span><br><span class="line">                                 initWithFetchRequest:fetchRequest</span><br><span class="line">                                 managedObjectContext:<span class="keyword">self</span><span class="variable">.managedObjectContext</span></span><br><span class="line">                                 sectionNameKeyPath:<span class="string">@"singer"</span></span><br><span class="line">                                 cacheName:<span class="literal">nil</span>];</span><br></pre></td></tr></table></figure>
 <p>属性section中文档有写：The objects in the sections array implement the NSFetchedResultsSectionInfo protocol.执行了<code>NSFetchedResultsSectionInfo</code>协议。</p>
 <p>在<code>NSFetchedResultsSectionInfo</code>中可以看到四个属性：numberOfObjects、objects、name、indexTitle。分别是，对象数量、对象、对象名称，索引标题。</p>
