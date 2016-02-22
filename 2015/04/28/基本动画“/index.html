@@ -54,10 +54,10 @@
 <meta name="description" content="基本动画 CABasicAnimation12345678- (void)touchesBegan:(NSSet&amp;lt;UITouch *&amp;gt; *)touches withEvent:(UIEvent *)event&amp;#123;    CABasicAnimation *anim = [[CABasicAnimation alloc]init];    anim.keyPath = @&quot;pos">
 <meta property="og:type" content="article">
 <meta property="og:title" content="iOS基本动画">
-<meta property="og:url" content="http://yoursite.com/2015/11/28/基本动画“/index.html">
+<meta property="og:url" content="http://yoursite.com/2015/04/28/基本动画“/index.html">
 <meta property="og:site_name" content="一只走江湖的橙子">
 <meta property="og:description" content="基本动画 CABasicAnimation12345678- (void)touchesBegan:(NSSet&amp;lt;UITouch *&amp;gt; *)touches withEvent:(UIEvent *)event&amp;#123;    CABasicAnimation *anim = [[CABasicAnimation alloc]init];    anim.keyPath = @&quot;pos">
-<meta property="og:updated_time" content="2016-01-12T00:32:41.000Z">
+<meta property="og:updated_time" content="2016-02-22T03:01:48.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS基本动画">
 <meta name="twitter:description" content="基本动画 CABasicAnimation12345678- (void)touchesBegan:(NSSet&amp;lt;UITouch *&amp;gt; *)touches withEvent:(UIEvent *)event&amp;#123;    CABasicAnimation *anim = [[CABasicAnimation alloc]init];    anim.keyPath = @&quot;pos">
@@ -225,8 +225,8 @@
         <div class="post-meta">
           <span class="post-time">
             发表于
-            <time itemprop="dateCreated" datetime="2015-11-28T20:14:11+08:00" content="2015-11-28">
-              2015-11-28
+            <time itemprop="dateCreated" datetime="2015-04-28T20:14:11+08:00" content="2015-04-28">
+              2015-04-28
             </time>
           </span>
 
@@ -311,6 +311,7 @@
 <p>可以看到运行后的结果：<br><br>anim和anim1的运动路径是一样的，但是相同园内一圈的时间不一样。<br><br>anim和anim2的运动路径虽然不一样，但是一周所用的时间确实一样的。<br><br>也就是说视觉上虽然anim的运动路径是一个圆，但是它确实按照矩形的运动路径进行的。这个就是<code>bezierPathWithOvalInRect:</code>与<code>bezierPathWithArcCenter:</code>的区别，前者实际路径是圆，时间计算确实按照矩形进行计算的，后者是正常的圆路径及时间。</p>
 <p>新建BGView继承UIView，可以更直观的观察。</p>
 <figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)drawRect:(<span class="built_in">CGRect</span>)rect &#123;</span><br><span class="line">    <span class="built_in">UIBezierPath</span> *path = [<span class="built_in">UIBezierPath</span> bezierPathWithOvalInRect:<span class="built_in">CGRectMake</span>(<span class="number">20</span>, <span class="number">20</span>, <span class="number">160</span>, <span class="number">160</span>)];</span><br><span class="line">    [path stroke];</span><br><span class="line">    <span class="built_in">UIBezierPath</span> *path1 = [<span class="built_in">UIBezierPath</span> bezierPathWithArcCenter:<span class="built_in">CGPointMake</span>(<span class="number">100</span>, <span class="number">100</span>) radius:<span class="number">80</span> startAngle:<span class="number">0</span> endAngle:<span class="number">2</span>*M_PI clockwise:<span class="literal">YES</span>];</span><br><span class="line">    [path1 stroke];</span><br><span class="line">    <span class="built_in">UIBezierPath</span> *path2 = [<span class="built_in">UIBezierPath</span> bezierPathWithRect:<span class="built_in">CGRectMake</span>(<span class="number">20</span>, <span class="number">20</span>, <span class="number">160</span>, <span class="number">160</span>)];</span><br><span class="line">    [path2 stroke];    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>添加下面代码给任何view，可查看效果。<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)startAnimation &#123;</span><br><span class="line">    <span class="built_in">CABasicAnimation</span> *anim = [<span class="built_in">CABasicAnimation</span> animationWithKeyPath:<span class="string">@"transform.rotation"</span>];</span><br><span class="line">    anim<span class="variable">.duration</span> = <span class="number">20</span>;</span><br><span class="line">    anim<span class="variable">.toValue</span> = @(<span class="number">2</span> * M_PI);</span><br><span class="line">    anim<span class="variable">.repeatCount</span> = MAXFLOAT;</span><br><span class="line">     <span class="comment">// 切换界面，或者 app 切到桌面上， CABasicAnimation 会被释放</span></span><br><span class="line">    anim<span class="variable">.removedOnCompletion</span> = <span class="literal">false</span>;</span><br><span class="line">    [<span class="keyword">self</span><span class="variable">.circleView</span><span class="variable">.layer</span> addAnimation:anim forKey:<span class="literal">nil</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 </span>
       
     </div>
@@ -328,7 +329,7 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/11/12/iOS手势/" rel="next" title="iOS手势">
+              <a href="/2015/04/12/iOS手势/" rel="next" title="iOS手势">
                 <i class="fa fa-chevron-left"></i> iOS手势
               </a>
             
@@ -336,7 +337,7 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2015/12/16/线程一次性代码/" rel="prev" title="线程中一次性代码测试">
+              <a href="/2015/06/16/线程一次性代码/" rel="prev" title="线程中一次性代码测试">
                 线程中一次性代码测试 <i class="fa fa-chevron-right"></i>
               </a>
             
@@ -420,7 +421,7 @@
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">14</span>
+              <span class="site-state-item-count">15</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>
